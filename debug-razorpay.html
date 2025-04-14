@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razorpay Debug Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #F37254;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #e05e3a;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            min-height: 100px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .log {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+            font-family: monospace;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Razorpay Debug Tool</h1>
+
+    <div class="card">
+        <h2>Test Razorpay Integration</h2>
+        <p>This tool helps you test if Razorpay is working correctly without going through the full registration
+            process.</p>
+
+        <button id="testRazorpay">Test Razorpay Payment</button>
+
+        <div class="result" id="result">
+            Results will appear here...
+        </div>
+
+        <h3>Console Log</h3>
+        <div class="log" id="log"></div>
+    </div>
+
+    <!-- Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        // Razorpay key - use your test key
+        const razorpayKeyId = "rzp_test_WJiUP1IdD92AnP";
+
+        // Log function to display in the UI
+        function log(message, type = 'info') {
+            console.log(message);
+            const logElement = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            entry.className = type;
+            logElement.appendChild(entry);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        // Show result
+        function showResult(message, isSuccess = true) {
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = message;
+            resultElement.className = isSuccess ? 'result success' : 'result error';
+        }
+
+        // Test Razorpay
+        function testRazorpay() {
+            log("Starting Razorpay test...");
+
+            try {
+                // Check if Razorpay is loaded
+                if (typeof Razorpay === 'undefined') {
+                    throw new Error("Razorpay is not loaded. Please check your internet connection.");
+                }
+
+                log("Razorpay is loaded. Creating payment options...");
+
+                // Create payment options
+                const options = {
+                    "key": razorpayKeyId,
+                    "amount": 5000, // ₹50 in paise
+                    "currency": "INR",
+                    "name": "IMAXX TV Digital",
+                    "description": "Test Payment",
+                    "image": "/Assests/directors/photo_2025-03-06 15.18.48.jpeg",
+                    "handler": function (response) {
+                        log("Payment successful! Payment ID: " + response.razorpay_payment_id, 'success');
+                        showResult("Payment successful! Payment ID: " + response.razorpay_payment_id, true);
+                    },
+                    "prefill": {
+                        "name": "Test User",
+                        "email": "test@example.com",
+                        "contact": "9999999999"
+                    },
+                    "theme": {
+                        "color": "#F37254"
+                    },
+                    "modal": {
+                        "ondismiss": function () {
+                            log("Payment modal dismissed by user", 'info');
+                            showResult("Payment cancelled by user", false);
+                        }
+                    }
+                };
+
+                log("Creating Razorpay instance...");
+                const rzp = new Razorpay(options);
+
+                // Handle payment failures
+                rzp.on('payment.failed', function (response) {
+                    log("Payment failed: " + response.error.description, 'error');
+                    showResult("Payment failed: " + response.error.description, false);
+                });
+
+                log("Opening Razorpay payment modal...");
+                rzp.open();
+
+            } catch (error) {
+                log("Error: " + error.message, 'error');
+                showResult("Error: " + error.message, false);
+            }
+        }
+
+        // Add event listener to the test button
+        document.getElementById('testRazorpay').addEventListener('click', testRazorpay);
+
+        // Check if Razorpay is loaded on page load
+        window.addEventListener('load', function () {
+            if (typeof Razorpay === 'undefined') {
+                log("Razorpay script failed to load!", 'error');
+                showResult("Razorpay script failed to load! Please check your internet connection.", false);
+            } else {
+                log("Razorpay script loaded successfully", 'success');
+                showResult("Razorpay script loaded successfully. Click the button to test payment.", true);
+            }
+        });
+    </script>
+</body>
+
+</html>

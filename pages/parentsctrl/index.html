@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV PARENTING CONTROL - IMAXX TV</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        #mbcbtns {
+            z-index: 999;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: block !important;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>IMAXX TV PARENTING CONTROL</h1>
+        <h2>Empower Safe Streaming for Kids</h2>
+    </header>
+
+    <main>
+        <section>
+            <p>
+                At <strong>IMAXX TV</strong>, your family’s viewing safety is our top priority. Our <strong>Parenting
+                    Control</strong> tools help you manage what your kids watch, when they watch it, and how long they
+                spend streaming. It’s a smart, simple way to ensure they enjoy safe and age-appropriate content.
+            </p>
+        </section>
+
+        <section>
+            <h3>Features You’ll Love:</h3>
+            <ol>
+                <li><strong>Age-Based Restrictions:</strong> Filter content by age group – General, PG, Teen, and more –
+                    to control what shows and movies are visible to your child.</li>
+                <li><strong>Kids Profiles:</strong> Create custom profiles with <strong>Kids Mode</strong> enabled,
+                    showcasing only child-safe content reviewed and curated by our team.</li>
+                <li><strong>Screen Time Control:</strong> Set daily or weekly time limits to promote healthy viewing
+                    habits and balance screen time with other activities.</li>
+                <li><strong>Content Filtering:</strong> Block specific genres or titles, or allow access only after your
+                    approval, giving you total command of the watchlist.</li>
+                <li><strong>PIN Protection:</strong> Secure restricted or adult content behind a PIN so only you can
+                    access or modify settings.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h3>How To Set It Up</h3>
+            <ul>
+                <li>Login to your IMAXX TV account.</li>
+                <li>Go to <strong>Settings</strong> > <strong>Parenting Control</strong>.</li>
+                <li>Create or update your child’s profile.</li>
+                <li>Set restrictions, enable Kids Mode, and add a secure PIN.</li>
+                <li>Relax while your kids enjoy safe content!</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Need Help?</h3>
+            <p>Visit our <a style="color: white;" href="https://www.imaxxtvdigital.com/pages/contacts/index.html">Help
+                    Center</a> or contact our Support Team at
+                <a style="color: white;" href="mailto:support@imaxxtvdigital.com">support@imaxxtvdigital.com</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 IMAXX TV. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Back Button -->
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

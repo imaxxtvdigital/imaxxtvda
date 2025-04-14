@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Media Center</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #mbcbtns {
+            z-index: 999;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: block !important;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        <h1>PROJECTS</h1>
+
+        <!-- Search and Filter Section -->
+        <div class="filter-search">
+            <input type="text" id="search-bar" placeholder="Search for a show..." oninput="filterShows()">
+        </div>
+
+        <!-- Tabs for Sections -->
+        <div class="tabs">
+            <button class="tab-button" onclick="showSection('trendins')">Trending</button>
+            <button class="tab-button" onclick="showSection('coming-soon')">Coming Soon</button>
+            <button class="tab-button" onclick="showSection('series')">Series</button>
+            <button class="tab-button" onclick="showSection('showss')">Shows</button>
+            <button class="tab-button" onclick="showSection('films')">Films</button>
+        </div>
+
+        <!-- Shows Section -->
+        <div id="shows">
+            <section id="trendins" class="show-section">
+                <h2>Trending</h2>
+                <div class="show-cards" id="trending-container">
+                    <!-- Content will be loaded from Firebase -->
+                    <div class="loader"></div>
+                </div>
+            </section>
+
+            <section id="coming-soon" class="show-section">
+                <h2>Coming Soon</h2>
+                <div class="show-cards" id="coming-soon-container">
+                    <!-- Content will be loaded from Firebase -->
+                    <div class="loader"></div>
+                </div>
+            </section>
+
+            <section id="series" class="show-section">
+                <h2>Series</h2>
+                <div class="show-cards" id="series-container">
+                    <!-- Content will be loaded from Firebase -->
+                    <div class="loader"></div>
+                </div>
+            </section>
+
+            <section id="showss" class="show-section">
+                <h2>Shows</h2>
+                <div class="show-cards" id="shows-container">
+                    <!-- Content will be loaded from Firebase -->
+                    <div class="loader"></div>
+                </div>
+            </section>
+
+            <section id="films" class="show-section">
+                <h2>Films</h2>
+                <div class="show-cards" id="films-container">
+                    <!-- Content will be loaded from Firebase -->
+                    <div class="loader"></div>
+                </div>
+            </section>
+        </div>
+         <!-- to be enable in future just rename it will start working. corroect name -id="media-popup" class="popup" -->
+        <!-- Popup for media details -->
+        <div id="media-popups" class="popups"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1000; justify-content: center; align-items: center;">
+            <div class="popup-content"
+                style="background-color: #111; width: 90%; max-width: 800px; border-radius: 10px; padding: 30px; position: relative; box-shadow: 0 0 20px rgba(209, 178, 97, 0.5); border: 2px solid #D1B261;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                    <img id="popup-img" src="" alt="Media Image"
+                        style="width: 100%; height: 400px; object-fit: contain; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="popup-info" style="text-align: center; width: 100%;">
+                        <h2 id="popup-title" style="color: #D1B261; margin-bottom: 10px; font-size: 24px;"></h2>
+                        <p id="popup-description" style="color: #fff; margin-bottom: 20px; font-size: 16px;"></p>
+                        <button id="watch-now-btn" class="btn-gold"
+                            style="background-color: #D1B261; color: #000; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; transition: all 0.3s ease;">
+                            Watch Now
+                        </button>
+                        <button id="add-to-list-btn" class="btn-gold"
+                            style="background-color: #D1B261; color: #000; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; transition: all 0.3s ease; margin-top: 10px;">
+                            Add to List
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        console.log("Firebase initialized successfully");
+
+        // Make db available globally
+        window.db = db;
+
+        // Cache for storing fetched data
+        const contentCache = {
+            trending: [],
+            'coming-soon': [],
+            series: [],
+            shows: [],
+            films: []
+        };
+
+        // Function to load all content from Firebase
+        async function loadAllContent() {
+            try {
+                // Show loading state for all containers
+                document.querySelectorAll('.show-cards').forEach(container => {
+                    container.innerHTML = '<div class="loader">Loading content...</div>';
+                });
+
+                // Load content for each category
+                await Promise.all([
+                    loadContent('trending', 'trending-container'),
+                    loadContent('coming-soon', 'coming-soon-container'),
+                    loadContent('series', 'series-container'),
+                    loadContent('shows', 'shows-container'),
+                    loadContent('films', 'films-container')
+                ]);
+
+                // Show trending section by default
+                showSection('trendins');
+            } catch (error) {
+                console.error("Error loading content:", error);
+                displayErrorMessage(error.message);
+            }
+        }
+
+        // Function to load content for a specific category
+        async function loadContent(category, containerId) {
+            try {
+                const contentContainer = document.getElementById(containerId);
+
+                // Check cache first
+                if (contentCache[category].length > 0) {
+                    displayContent(contentCache[category], containerId);
+                    return;
+                }
+
+                console.log(`Fetching content for category: ${category}`);
+
+                // Query the media collection
+                const mediaRef = collection(db, "media");
+                const q = query(
+                    mediaRef,
+                    where("category", "==", category)
+                );
+
+                const querySnapshot = await getDocs(q);
+                const content = [];
+
+                if (querySnapshot.empty) {
+                    console.log(`No content found for category: ${category}`);
+                    const fallbackData = createFallbackData(category);
+                    contentCache[category] = fallbackData;
+                    displayContent(fallbackData, containerId);
+                    return;
+                }
+
+                // Process each document
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    console.log(`Document ${doc.id}:`, data); // Log each document's data
+                    content.push({
+                        id: doc.id,
+                        title: data.title,
+                        description: data.description,
+                        imageUrl: data.imageUrl,
+                        category: data.category,
+                        orientation: data.orientation,
+                        order: data.order
+                    });
+                });
+
+                // Sort content by order after fetching
+                content.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+                console.log(`Successfully loaded ${content.length} items for ${category}`);
+                contentCache[category] = content;
+                displayContent(content, containerId);
+
+            } catch (error) {
+                console.error(`Error loading ${category}:`, error);
+                // Use fallback data on error
+                const fallbackData = createFallbackData(category);
+                contentCache[category] = fallbackData;
+                displayContent(fallbackData, containerId);
+            }
+        }
+
+        // Function to create fallback data
+        function createFallbackData(category) {
+            const fallbackData = {
+                'films': [
+                    {
+                        id: '1uH71a356kO4oUqDhYUD',
+                        title: "AKHRI KHAT",
+                        description: "Trending now. Don't miss out!",
+                        imageUrl: "/Assests/filmss/6 2.png",
+                        category: "films",
+                        orientation: "vertical",
+                        order: 1
+                    },
+                    {
+                        id: '2N5XDvYkcbHkR99If5CH',
+                        title: "JOOTHA MOOTA GUNJA",
+                        description: "Watch now for exclusive content.",
+                        imageUrl: "/Assests/filmss/Jootha Mootha Gunja.png",
+                        category: "films",
+                        orientation: "horizontal",
+                        order: 9
+                    }
+                ],
+                'trending': [
+                    {
+                        id: 'fallback-1',
+                        title: "AKHRI KHAT",
+                        description: "Trending now. Don't miss out!",
+                        imageUrl: "/Assests/filmss/6 2.png",
+                        category: "trending",
+                        orientation: "vertical",
+                        order: 1
+                    }
+                ],
+                'coming-soon': [
+                    {
+                        id: 'fallback-2',
+                        title: "70'S SHAADI",
+                        description: "Coming soon to IMAXX TV!",
+                        imageUrl: "/Assests/filmss/4.png",
+                        category: "coming-soon",
+                        orientation: "horizontal",
+                        order: 1
+                    }
+                ],
+                'series': [
+                    {
+                        id: 'fallback-3',
+                        title: "DAIRAA",
+                        description: "Watch the complete series!",
+                        imageUrl: "/Assests/series/3.png",
+                        category: "series",
+                        orientation: "horizontal",
+                        order: 1
+                    }
+                ],
+                'shows': [
+                    {
+                        id: 'fallback-4',
+                        title: "MAHABHARAT",
+                        description: "Watch this amazing show!",
+                        imageUrl: "/Assests/series/2 5.png",
+                        category: "shows",
+                        orientation: "horizontal",
+                        order: 1
+                    }
+                ]
+            };
+
+            return fallbackData[category] || [];
+        }
+
+        // Function to display content in a container
+        function displayContent(content, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            if (content.length === 0) {
+                container.innerHTML = '<div class="no-data">No content available</div>';
+                return;
+            }
+
+            content.forEach(data => {
+                const card = createCard(data, data.id);
+                container.appendChild(card);
+            });
+        }
+
+        // Function to create a card element
+        function createCard(data, id) {
+            const card = document.createElement('div');
+            card.className = `card ${data.orientation || 'vertical'}`;
+            card.setAttribute('data-id', id);
+
+            card.onclick = function () {
+                openDetailPage(data.title, data.description, data.imageUrl);
+            };
+
+            card.innerHTML = `
+                <img src="${data.imageUrl}" alt="${data.title}" loading="lazy">
+                <h3>${data.title}</h3>
+                <p>${data.description}</p>
+            `;
+
+            return card;
+        }
+
+        // Function to display error message
+        function displayErrorMessage(errorMessage = '') {
+            const containers = [
+                'trending-container', 'coming-soon-container',
+                'series-container', 'shows-container', 'films-container'
+            ];
+
+            const errorHtml = `
+                <div class="error">
+                    <p>Error loading content. Please try again later.</p>
+                    ${errorMessage ? `<p class="error-details">${errorMessage}</p>` : ''}
+                </div>
+            `;
+
+            containers.forEach(containerId => {
+                const container = document.getElementById(containerId);
+                container.innerHTML = errorHtml;
+            });
+        }
+
+        // Make these functions available globally
+        window.loadContent = loadContent;
+        window.loadAllContent = loadAllContent;
+
+        // Load content when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllContent();
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

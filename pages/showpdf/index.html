@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Document Viewer</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <style>
+        #mbcbtns {
+            z-index: 100;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create back button if it doesn't exist
+            if (!document.getElementById('mbcbtns')) {
+                // Create back button element
+                const backButton = document.createElement('div');
+                backButton.id = 'mbcbtns';
+                backButton.style.cssText = 'z-index: 9999 !important; display: block !important; position: fixed !important; bottom: 20px !important; left: 20px !important; visibility: visible !important;';
+
+                backButton.innerHTML = `
+                    <button class="btn-back" 
+                        style="display: flex !important; justify-content: center !important; align-items: center !important; background-color: rgba(0, 0, 0, 0.7) !important; border: 2px solid #D1B261 !important; color: #D1B261 !important; border-radius: 50% !important; width: 50px !important; height: 50px !important; visibility: visible !important; font-size: 24px !important; cursor: pointer !important;"
+                        onclick="window.history.back()">
+                        <i class="fas fa-arrow-left"
+                            style="display: inline-block !important; color: #D1B261 !important; font-size: 20px !important; visibility: visible !important;"></i>
+                        <span style="display: none !important;">←</span>
+                    </button>
+                `;
+                document.body.appendChild(backButton);
+
+                // Check if Font Awesome is loaded
+                if (!document.querySelector('link[href*="font-awesome"]')) {
+                    const fa = document.createElement('link');
+                    fa.rel = 'stylesheet';
+                    fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+                    document.head.appendChild(fa);
+                }
+
+                // Fallback to text arrow if icon doesn't load
+                setTimeout(function () {
+                    const icon = document.querySelector('#mbcbtns .fa-arrow-left');
+                    if (!icon || getComputedStyle(icon).display === 'none') {
+                        const textArrow = document.querySelector('#mbcbtns .btn-back span');
+                        if (textArrow) {
+                            textArrow.style.display = 'inline-block !important';
+                            textArrow.style.visibility = 'visible !important';
+                        }
+                    }
+                }, 500);
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>PDF Viewer</h1>
+        <div id="pdf-scroll-container" class="pdf-scroll-container">
+            <div id="pdf-container" class="pdf-container"></div>
+        </div>
+    </div>
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBacks()"
+            style="display: flex !important; justify-content: center !important; align-items: center !important; background-color: rgba(0, 0, 0, 0.7) !important; border: 2px solid #D1B261 !important; color: #D1B261 !important; border-radius: 50% !important; width: 50px !important; height: 50px !important; visibility: visible !important; font-size: 24px !important;">
+            <i class="fas fa-arrow-left"
+                style="display: inline-block !important; color: #D1B261 !important; font-size: 20px !important; visibility: visible !important;"></i>
+            &#8592;
+        </button>
+    </div>
+
+    <script>
+        // Function to get the query parameter from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Function to load the PDF dynamically based on the passed PDF URL
+        async function loadPDF(pdfUrl) {
+            if (!pdfUrl) {
+                alert('No PDF URL provided');
+                return;
+            }
+
+            const pdfContainer = document.getElementById("pdf-container");
+
+            // Load the PDF using PDF.js
+            const loadingTask = pdfjsLib.getDocument(pdfUrl);
+            const pdf = await loadingTask.promise;
+
+            // Render all pages of the PDF
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const viewport = page.getViewport({ scale: 1.5 });
+
+                // Create canvas elements for each page
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                // Render the page into the canvas
+                const renderTask = page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                });
+
+                await renderTask.promise;
+
+                // Add the canvas to the container
+                pdfContainer.appendChild(canvas);
+            }
+        }
+
+        // On page load, get the 'pdf' parameter and load the PDF
+        window.onload = function () {
+            const pdfUrl = getQueryParam('pdf');
+            loadPDF(pdfUrl);
+        };
+
+        // Back button functionality
+        function goBacks() {
+            window.history.back();
+        }
+
+        // Scroll functionality for mobile devices
+        let lastScrollTop = 0;
+        window.onscroll = function () {
+            let button = document.getElementById("mbcbtn");
+            let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (window.innerWidth <= 768) {
+                if (currentScrollTop > lastScrollTop) {
+                    button.style.display = "block";
+                } else {
+                    button.style.display = "none";
+                }
+            } else {
+                button.style.display = "block";
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        };
+    </script>
+</body>
+
+</html>

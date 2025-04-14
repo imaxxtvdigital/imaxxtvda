@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: aliceblue;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+    background-color: #000;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+h1 {
+    color: #ffd000;
+    font-size: 36px;
+}
+
+.pdf-scroll-container {
+    width: 80%;
+    height: 100vh;
+    /* Set to 70% of the viewport height, adjust as needed */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.pdf-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    /* Space between pages */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .pdf-scroll-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .pdf-scroll-container {
+        width: 100%;
+    }
+}
+
+#mbcbtn {
+    z-index: 0;
+    position: sticky;
+    bottom: 20px;
+    left: 20px;
+}
+
+#mbcbtns {
+    z-index: 100;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.btn-watch {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-watch:hover {
+   cursor: pointer;
+}

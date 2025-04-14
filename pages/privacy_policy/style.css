@@ -1,0 +1,147 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    /* Include padding and border in element's total width and height */
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+    overflow-y: auto;
+    /* Allow vertical scrolling if necessary */
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: #D1B261;
+}
+
+header h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+section h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #D1B261;
+}
+
+section ol {
+    padding-left: 20px;
+}
+
+section ol li {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Contact Us Section */
+section p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    header h1 {
+        font-size: 40px;
+    }
+
+    header h2 {
+        font-size: 22px;
+    }
+
+    section h3 {
+        font-size: 28px;
+    }
+
+    section p {
+        font-size: 16px;
+    }
+
+    footer p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 36px;
+    }
+
+    header h2 {
+        font-size: 20px;
+    }
+
+    section h3 {
+        font-size: 26px;
+    }
+
+    section p {
+        font-size: 15px;
+    }
+
+    footer p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    header h2 {
+        font-size: 18px;
+    }
+
+    section h3 {
+        font-size: 24px;
+    }
+
+    section p {
+        font-size: 14px;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+}

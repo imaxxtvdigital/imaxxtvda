@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Partner's Programs</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #mbcbtns {
+            z-index: 100;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        <h1>Partner's Program</h1>
+
+        <!-- Image Gallery Section -->
+        <section class="gallery-section">
+            <div class="scroll-section">
+                <div class="scroll-images">
+                    <img src="/Assests/directors/photo_2025-02-20 20.07.57.jpeg" alt="Firm Image 1">
+                    <img src="/Assests/directors/photo_2025-02-20 20.08.01.jpeg" alt="Firm Image 2">
+                    <img src="/Assests/directors/photo_2025-02-20 20.08.03.jpeg" alt="Firm Image 3">
+                    <img src="/Assests/directors/photo_2025-02-27 15.50.52.jpeg" alt="Firm Image 4">
+                </div>
+                <div class="scroll-images">
+                    <img src="/Assests/directors/photo_2025-02-20 20.07.57.jpeg" alt="Firm Image 1">
+                    <img src="/Assests/directors/photo_2025-02-20 20.08.01.jpeg" alt="Firm Image 2">
+                    <img src="/Assests/directors/photo_2025-02-20 20.08.03.jpeg" alt="Firm Image 3">
+                    <img src="/Assests/directors/photo_2025-02-27 15.50.52.jpeg" alt="Firm Image 4">
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Section -->
+        <section class="content-section">
+            <!-- Tab Buttons -->
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('overview')">Program Overview</button>
+                <button class="tab-btn" onclick="showTab('guidelines')">Guidelines</button>
+                <button class="tab-btn" onclick="showTab('partner')">Become Partner</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Program Overview Tab -->
+                <div id="overview" class="tab-pane active">
+                    <div class="program-overview">
+                        <h2>Program Overview</h2>
+                        <p class="highlight-text">
+                            The Imaxx TV Producers Partners Programme is designed to foster collaboration between
+                            content
+                            creators (filmmakers, producers, and distributors) and the Imaxx TV platform. This program
+                            provides
+                            content creators with the opportunity to distribute their content to a wider audience and
+                            gain
+                            access to a variety of distribution channels.
+                        </p>
+
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <h3>Content Distribution</h3>
+                                <p>Showcase your content on Imaxx TV, reaching a global viewership and increasing your
+                                    visibility.</p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>Revenue Sharing</h3>
+                                <p>Earn revenue based on views and engagements your content generates on the platform.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>Marketing & Promotion</h3>
+                                <p>Access promotional opportunities including social media promotion and featured
+                                    content slots.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>Analytics Access</h3>
+                                <p>Receive detailed analytics to help refine your strategy and improve engagement.</p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>Collaboration</h3>
+                                <p>Connect with other creators and industry professionals for networking opportunities.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guidelines Tab -->
+                <div id="guidelines" class="tab-pane">
+                    <div class="guidelines-section">
+                        <h2>Participation Guidelines</h2>
+                        <div class="guidelines-grid">
+                            <div class="guideline-card">
+                                <h3>Content Quality</h3>
+                                <p>Content must meet technical requirements for resolution, sound quality, and
+                                    production
+                                    values.</p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Licensing</h3>
+                                <p>Ensure proper licensing for all content elements including music and third-party
+                                    materials.
+                                </p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Original Content</h3>
+                                <p>Priority given to original content or content offering unique value.</p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Content Categorization</h3>
+                                <p>Proper categorization based on Imaxx TV's genre requirements.</p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Legal Compliance</h3>
+                                <p>All content must adhere to local laws and broadcasting regulations.</p>
+                            </div>
+                            <div class="guideline-card">
+                                <h3>Timely Submission</h3>
+                                <p>Adhere to Imaxx TV's deadlines for content submission.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partner Form Tab -->
+                <div id="partner" class="tab-pane">
+                    <div class="partner-form-section">
+                        <h2>Become Our Partner</h2>
+                        <form id="partnerForm" class="partner-form">
+                            <div class="form-group">
+                                <input type="text" name="company_name" id="company_name" placeholder="Company Name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="producer_name" id="producer_name" placeholder="Producer Name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" name="phone" id="phone" placeholder="Phone" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="address" id="address" placeholder="Address" required>
+                            </div>
+                            <div class="form-group">
+                                <select name="reason" id="reason" required>
+                                    <option value="">Select a reason</option>
+                                    <option value="help">Pitch us your projects</option>
+                                    <option value="payment">Sell</option>
+                                    <option value="content">Revenue Sharing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="previous_projects" id="previous_projects"
+                                    placeholder="Previous Projects" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" id="submitBtn">Submit Application</button>
+                            <div id="formStatus" class="form-status"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Back Button -->
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBacks()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <script>
+        let lastScrollTop = 0;
+
+        window.onscroll = function () {
+            let button = document.getElementById("mbcbtns");
+            let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Check if it's a mobile device (max-width: 768px)
+            if (window.innerWidth <= 768) {
+                if (currentScrollTop > lastScrollTop) {
+                    // User is scrolling down
+                    button.style.display = "block"; // Show the button
+                } else {
+                    // User is scrolling up
+                    button.style.display = "none"; // Hide the button
+                }
+            } else {
+                // On desktop, keep the button always visible
+                button.style.display = "block"; // Ensure it's always shown on desktop
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
+        };
+
+        function goBacks() {
+            window.history.back();
+        }
+
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tab panes
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab pane
+            document.getElementById(tabId).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        let app, db;
+
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            console.log("Firebase initialized successfully");
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+            alert("Firebase initialization failed: " + error.message);
+        }
+
+        // Function to show status messages
+        function showStatus(message, isSuccess) {
+            const formStatus = document.getElementById('formStatus');
+            if (!formStatus) {
+                console.error("formStatus element not found");
+                alert(message);
+                return;
+            }
+            formStatus.textContent = message;
+            formStatus.style.color = isSuccess ? "#4CAF50" : "#F44336";
+
+            // Automatically clear success messages after 5 seconds
+            if (isSuccess) {
+                setTimeout(() => {
+                    formStatus.textContent = "";
+                }, 5000);
+            }
+        }
+
+        // Function to validate form data
+        function validateForm(data) {
+            // Basic validation
+            if (!data.company_name || data.company_name.trim() === "") {
+                return { valid: false, message: "Company name is required" };
+            }
+            if (!data.producer_name || data.producer_name.trim() === "") {
+                return { valid: false, message: "Producer name is required" };
+            }
+            if (!data.phone || data.phone.trim() === "") {
+                return { valid: false, message: "Phone number is required" };
+            }
+            if (!data.email || data.email.trim() === "") {
+                return { valid: false, message: "Email is required" };
+            }
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                return { valid: false, message: "Please enter a valid email address" };
+            }
+            if (!data.address || data.address.trim() === "") {
+                return { valid: false, message: "Address is required" };
+            }
+            if (!data.reason || data.reason === "") {
+                return { valid: false, message: "Please select a reason" };
+            }
+            if (!data.previous_projects || data.previous_projects.trim() === "") {
+                return { valid: false, message: "Previous projects information is required" };
+            }
+
+            return { valid: true };
+        }
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM fully loaded");
+
+            // Get form element
+            const partnerForm = document.getElementById('partnerForm');
+            if (!partnerForm) {
+                console.error("Partner form not found");
+                alert("Partner form not found on page");
+                return;
+            }
+
+            console.log("Partner form found:", partnerForm);
+
+            // Add direct click handler to submit button as a backup
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                console.log("Submit button found");
+                submitBtn.onclick = function (e) {
+                    console.log("Submit button clicked directly");
+                    if (!partnerForm.checkValidity()) {
+                        console.log("Form is invalid");
+                        return;
+                    }
+                    handleFormSubmit(e);
+                };
+            } else {
+                console.error("Submit button not found");
+                alert("Submit button not found on page");
+            }
+
+            // Add submit event listener to the form
+            partnerForm.addEventListener('submit', handleFormSubmit);
+            console.log("Submit event listener added to form");
+
+            // Add event listener to check form validity on input
+            partnerForm.addEventListener('input', () => {
+                const submitBtn = document.getElementById('submitBtn');
+                if (submitBtn) {
+                    submitBtn.disabled = !partnerForm.checkValidity();
+                }
+            });
+        });
+
+        // Handle form submission
+        async function handleFormSubmit(e) {
+            console.log("Form submission handler called");
+            e.preventDefault();
+
+            // Get form element
+            const partnerForm = document.getElementById('partnerForm');
+            if (!partnerForm) {
+                console.error("Partner form not found in submission handler");
+                alert("Partner form not found on page");
+                return;
+            }
+
+            // Disable submit button to prevent multiple submissions
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            try {
+                // Get form values
+                const companyName = document.getElementById('company_name')?.value || '';
+                const producerName = document.getElementById('producer_name')?.value || '';
+                const phone = document.getElementById('phone')?.value || '';
+                const email = document.getElementById('email')?.value || '';
+                const address = document.getElementById('address')?.value || '';
+                const reason = document.getElementById('reason')?.value || '';
+                const previousProjects = document.getElementById('previous_projects')?.value || '';
+
+                console.log("Form data collected:", { companyName, producerName, phone, email });
+
+                const partnerData = {
+                    company_name: companyName,
+                    producer_name: producerName,
+                    phone: phone,
+                    email: email,
+                    address: address,
+                    reason: reason,
+                    previous_projects: previousProjects,
+                    submission_date: new Date().toISOString(),
+                    timestamp: serverTimestamp()
+                };
+
+                // Validate form data
+                const validation = validateForm(partnerData);
+                if (!validation.valid) {
+                    console.log("Validation failed:", validation.message);
+                    showStatus(validation.message, false);
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Submit';
+                    }
+                    return;
+                }
+
+                console.log("Form data validated successfully");
+
+                // Check if Firebase is initialized
+                if (!db) {
+                    const error = new Error("Firebase is not initialized");
+                    console.error(error);
+                    showStatus("Firebase is not initialized. Please refresh the page and try again.", false);
+                    throw error;
+                }
+
+                console.log("Attempting to save to Firebase...");
+
+                // Add document to "partners" collection
+                const docRef = await addDoc(collection(db, "partners"), partnerData);
+
+                console.log("Document written with ID:", docRef.id);
+
+                // Show success message
+                showStatus("Thank you! Your application has been submitted successfully.", true);
+
+                // Reset form
+                partnerForm.reset();
+            } catch (error) {
+                console.error("Error in form submission:", error);
+
+                // Show error message with more details
+                let errorMessage = "Error submitting form. ";
+
+                if (error.code) {
+                    // Firebase specific errors
+                    switch (error.code) {
+                        case 'permission-denied':
+                            errorMessage += "You don't have permission to submit this form.";
+                            break;
+                        case 'unavailable':
+                            errorMessage += "The service is currently unavailable. Please try again later.";
+                            break;
+                        default:
+                            errorMessage += "Please try again later. " + error.message;
+                    }
+                } else {
+                    errorMessage += "Please try again later. " + error.message;
+                }
+
+                showStatus(errorMessage, false);
+                alert("Error: " + errorMessage); // Show alert for visibility
+            } finally {
+                // Re-enable submit button
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                }
+            }
+        }
+
+        // Log that the script has loaded successfully
+        console.log("Partner form script loaded successfully");
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+    font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+    background-color: #000;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+
+.flexx {
+    display: flex;
+    margin-top: 50px;
+    margin-left: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.leftsss {
+    width: 40%;
+    margin-top: 100px;
+    align-items: center;
+    text-align: center;
+    padding-right: 20px;
+    /* Add some space between left and right sections */
+}
+
+.address {
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #ffffff;
+    /* Same border as the contact form */
+    background-color: rgba(0, 0, 0, 1);
+    /* Background to match the contact form */
+    border-radius: 12px;
+    /* Rounded corners for consistency */
+    box-shadow: 0 4px 8px #D1B261;
+    /* Same shadow effect as the contact form */
+}
+
+.address h2 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.address p {
+    font-size: 16px;
+    color: #bbb;
+    margin-bottom: 10px;
+}
+
+.rightssss {
+    width: 60%;
+}
+
+.contact-container {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.page-title {
+    color: #ffffff;
+    font-size: 36px;
+}
+
+.contact-description {
+    color: #fff;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #ffffff;
+    background-color: rgba(0, 0, 0, 1);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px #D1B261;
+}
+
+.form-section {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-size: 16px;
+    color: #fff;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+textarea {
+    height: 150px;
+    resize: none;
+}
+
+.submit-btn {
+    background-color: #D1B261;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    color: #000;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #D1B261;
+}
+
+.quick-links {
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.links-title {
+    color: #fff;
+    font-size: 34px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.links-list {
+    list-style: none;
+    padding: 0;
+}
+
+.links-list li {
+    margin: 10px 0;
+}
+
+.links-list a {
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.links-list a:hover {
+    color: #D1B261;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .flexx {
+        /* padding-left: 5%; */
+        /* padding-right: 20%; */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .leftsss,
+    .rightssss {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .page-title {
+        font-size: 28px;
+    }
+
+    .contact-form {
+        max-width: 600px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form {
+        max-width: 100%;
+        /* margin-left: -20px; */
+    }
+
+    .leftsss,
+    .rightssss {
+        width: 100%;
+        margin-top: 40px;
+        margin-right: 60px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+        padding: 10px 16px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .contact-form {
+        width: 90%;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+
+    .quick-links {
+        width: 90%;
+    }
+}
+
+
+#mbcbtn {
+    z-index: 0;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+#mbcbtn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: #ffffff;
+    text-shadow: 4px 4px 12px #D1B261;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+#mbcbtn:hover {
+    cursor: pointer;
+}
+
+.fas.fa-phone-alt {
+    font-size: 28px;
+    /* Size of the icon */
+    color: #ffffff;
+    /* Color of the icon */
+    padding: 10px;
+    /* Optional padding */
+}

@@ -1,0 +1,167 @@
+* {
+    margin: 10px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: aliceblue;
+}
+
+body {
+    background-color: #000;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    text-align: center;
+}
+
+#page {
+    padding: 40px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin: 20px 0;
+    color: #ffffff;
+}
+
+.partner-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #000;
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.partner-form input,
+.partner-form select,
+.partner-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    background-color: #000;
+    color: aliceblue;
+    border-radius: 5px;
+}
+
+.partner-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff;
+    color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.partner-form button:hover {
+    background-color: #ffbb00;
+}
+
+#designation option {
+    background-color: #000;
+}
+
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .partner-form {
+        padding: 15px;
+    }
+
+    .partner-form input,
+    .partner-form textarea {
+        padding: 8px;
+    }
+
+    .partner-form button {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .partner-form {
+        padding: 10px;
+    }
+
+    .partner-form input,
+    .partner-form textarea {
+        padding: 8px;
+    }
+
+    .partner-form button {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    .partner-form input,
+    .partner-form textarea {
+        font-size: 0.9rem;
+        padding: 6px;
+    }
+
+    .partner-form button {
+        padding: 8px;
+
+        font-size: 0.9rem;
+    }
+}
+
+#mbcbtn {
+    z-index: 0;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+#mbcbtn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: #ffffff;
+    text-shadow: 4px 4px 12px rgba(182, 159, 28, 1);
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+#mbcbtn:hover {
+    cursor: pointer;
+}

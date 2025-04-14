@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parenting Control</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        #mbcbtns {
+            z-index: 999;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: block !important;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>IMAXX TV - Parenting Control</h1>
+        <h2>Keep Your Family's Viewing Experience Safe with IMAXX TV</h2>
+    </header>
+    <main>
+        <section>
+            <p>At IMAXX TV, we understand that as a parent, you want to ensure that your
+                children enjoy a safe and secure streaming experience. That's why we've
+                developed Parenting Control, a set of tools that allow you to manage the
+                content your children can access, keeping their entertainment both fun and
+                appropriate for their age.</p>
+        </section>
+        <section>
+            <h3>Key Features of Parenting Control:</h3>
+            <ol>
+                <li><strong>Customizable Age Restrictions:</strong> Set viewing restrictions based on the age of your
+                    child. You can limit content to
+                    specific ratings such as General, PG, or Teen, ensuring they only have access to age-
+                    appropriate shows and movies.</li>
+                <li><strong>Profile Creation for Kids:</strong> Create separate profiles for each child with tailored
+                    content suggestions. You can
+                    assign a profile to the "Kids Mode" to show only child-friendly content curated by
+                    IMAXX TV.</li>
+                <li><strong>Screen Time Management:</strong> Set daily or weekly time limits for how long your child can
+                    watch content on IMAXX
+                    TV. This feature helps you control screen time while ensuring they balance
+                    entertainment with other activities.</li>
+                <li><strong>Content Filtering and Blocking:</strong> Use the content filter to block specific genres or
+                    titles that you feel are inappropriate.
+                    You can also review and approve what your child wants to watch before they start.</li>
+                <li><strong>Secure PIN Protection:</strong> Lock adult or restricted content behind a PIN code, so you
+                    control access to sensitive
+                    materials.</li>
+            </ol>
+        </section>
+        <section>
+            <h3>How to Set Up Parenting Control:</h3>
+            <ol>
+                <li>Log into your IMAXX TV account.</li>
+                <li>Navigate to Settings and select Parenting Control.</li>
+                <li> Create or update a profile for your child.</li>
+                <li>Adjust the content filters, set screen time limits, and enable PIN protection.</li>
+                <li>Save your settings, and enjoy peace of mind knowing your child's viewing
+                    experience is safeguarded.</li>
+            </ol>
+        </section>
+        <section>
+            <h3>Empower Your Family with Safe Entertainment</h3>
+            <p>With our Parenting Control feature, you can ensure your family enjoys the wide
+                variety of content on IMAXX TV while keeping your children protected from
+                unsuitable material. <br>
+                For more information on IMAXX TV and our family-friendly services, feel free to reach
+                out to our Customer Support or visit our Help Center.</p>
+        </section>
+        <section>
+            <h3>Contact Us</h3>
+            <p>
+                <i class="fas fa-globe"></i>
+                <a style="color: white;"
+                    href="https://www.imaxxtvdigital.com/pages/contacts/index.html">www.imaxxtvdigital.com</a>
+            </p>
+            <p>
+                <i class="fas fa-envelope"></i>
+                Email: <a style="color: white;"
+                    href="mailto:operations@imaxxtvdigital.com">operations@imaxxtvdigital.com</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 IMAXX TV. All Rights Reserved.</p>
+    </footer>
+    </main>
+    <!-- Back Button -->
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+    <script>
+        // Go back function
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+
+</html>

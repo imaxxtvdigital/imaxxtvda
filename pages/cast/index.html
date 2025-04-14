@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Cast</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #mbcbtns {
+            z-index: 999;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: block !important;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        <!-- <h1>Casting</h1> -->
+
+        <!-- Search and Filter Section -->
+        <!-- <div class="filter-search">
+            <input type="text" id="search-bar" placeholder="Search for cast members..." oninput="filterCast()">
+        </div> -->
+
+        <!-- Cast Form Section -->
+        <div class="cast-form-section">
+            <h2>Application Form</h2>
+            <form id="castForm" class="cast-form">
+                <h3>Personal Information</h3>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="name" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="nickname" id="nickname" placeholder="Nickname">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="location" id="location" placeholder="Current Location" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" name="dob" id="dob" placeholder="Date of Birth" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="height" id="height" placeholder="Height (in inches)" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="age" id="age" placeholder="Age" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="screenAge" id="screenAge" placeholder="Screen Age">
+                </div>
+                <div class="form-group">
+                    <select name="gender" id="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="vitalStats" id="vitalStats" placeholder="Vital Stats (e.g., 36-24-36)">
+                </div>
+                <div class="form-group">
+                    <select name="maritalStatus" id="maritalStatus" required>
+                        <option value="">Select Marital Status</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" id="phone" placeholder="Phone Number" required>
+                </div>
+
+                <h3>Address Information</h3>
+                <br>
+                <div class="form-group">
+                    <textarea name="permanentAddress" id="permanentAddress" placeholder="Permanent Address" rows="3"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="city" id="city" placeholder="City" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="parentStatus" id="parentStatus" placeholder="Parent Status" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="zipCode" id="zipCode" placeholder="ZIP Code" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="studentTrustee" id="studentTrustee" placeholder="Student Trustee">
+                </div>
+
+                <h3>Professional Information</h3>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="experience" id="experience" placeholder="Years of Experience" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="languages" id="languages" placeholder="Languages Known" rows="2"
+                        required></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn">Submit Application</button>
+                <div id="formStatus" class="form-status"></div>
+            </form>
+        </div>
+
+        <!-- Cast Display Section -->
+        <!-- <div class="cast-display">
+            <h2>Current Cast Members</h2>
+            <div class="show-cards" id="cast-container">
+                <div class="loader">Loading cast members...</div>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- Back Button -->
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, addDoc, query, where } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Function to show status messages
+        function showStatus(message, isSuccess) {
+            const formStatus = document.getElementById('formStatus');
+            if (!formStatus) {
+                console.error("formStatus element not found");
+                alert(message);
+                return;
+            }
+            formStatus.textContent = message;
+            formStatus.style.color = isSuccess ? "#4CAF50" : "#F44336";
+
+            if (isSuccess) {
+                setTimeout(() => {
+                    formStatus.textContent = "";
+                }, 5000);
+            }
+        }
+
+        // Function to load all cast members
+        async function loadAllCast() {
+            try {
+                const container = document.getElementById('cast-container');
+                const castRef = collection(db, "cast");
+                const querySnapshot = await getDocs(castRef);
+                const cast = [];
+
+                if (querySnapshot.empty) {
+                    container.innerHTML = '<div class="no-data">No cast members available</div>';
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    cast.push({
+                        id: doc.id,
+                        name: data.name,
+                        role: data.role,
+                        imageUrl: data.imageUrl,
+                        bio: data.bio,
+                        category: data.category
+                    });
+                });
+
+                displayCast(cast, 'cast-container');
+            } catch (error) {
+                console.error("Error loading cast:", error);
+                displayErrorMessage(error.message);
+            }
+        }
+
+        // Function to display cast members
+        function displayCast(cast, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            if (cast.length === 0) {
+                container.innerHTML = '<div class="no-data">No cast members available</div>';
+                return;
+            }
+
+            cast.forEach(member => {
+                const card = createCastCard(member);
+                container.appendChild(card);
+            });
+        }
+
+        // Function to create a cast card
+        function createCastCard(member) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${member.imageUrl}" alt="${member.name}" loading="lazy">
+                <h3>${member.name}</h3>
+                <p class="role">${member.role}</p>
+                <p class="category">${member.category.charAt(0).toUpperCase() + member.category.slice(1)}</p>
+                <p class="bio">${member.bio}</p>
+            `;
+            return card;
+        }
+
+        // Function to display error message
+        function displayErrorMessage(errorMessage = '') {
+            const container = document.getElementById('cast-container');
+            const errorHtml = `
+                <div class="error">
+                    <p>Error loading cast members. Please try again later.</p>
+                    ${errorMessage ? `<p class="error-details">${errorMessage}</p>` : ''}
+                </div>
+            `;
+            container.innerHTML = errorHtml;
+        }
+
+        // Function to filter cast members
+        window.filterCast = function () {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const role = card.querySelector('.role').textContent.toLowerCase();
+                const category = card.querySelector('.category').textContent.toLowerCase();
+                const bio = card.querySelector('.bio').textContent.toLowerCase();
+
+                if (name.includes(searchTerm) || role.includes(searchTerm) ||
+                    category.includes(searchTerm) || bio.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
+
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', () => {
+            const castForm = document.getElementById('castForm');
+            if (castForm) {
+                castForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const submitBtn = document.getElementById('submitBtn');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Submitting...';
+                    }
+
+                    try {
+                        const formData = {
+                            name: document.getElementById('name').value,
+                            nickname: document.getElementById('nickname').value,
+                            location: document.getElementById('location').value,
+                            dob: document.getElementById('dob').value,
+                            height: document.getElementById('height').value,
+                            email: document.getElementById('email').value,
+                            age: document.getElementById('age').value,
+                            screenAge: document.getElementById('screenAge').value,
+                            gender: document.getElementById('gender').value,
+                            vitalStats: document.getElementById('vitalStats').value,
+                            maritalStatus: document.getElementById('maritalStatus').value,
+                            phone: document.getElementById('phone').value,
+                            permanentAddress: document.getElementById('permanentAddress').value,
+                            city: document.getElementById('city').value,
+                            parentStatus: document.getElementById('parentStatus').value,
+                            zipCode: document.getElementById('zipCode').value,
+                            studentTrustee: document.getElementById('studentTrustee').value,
+                            experience: document.getElementById('experience').value,
+                            languages: document.getElementById('languages').value,
+                            timestamp: new Date().toISOString()
+                        };
+
+                        await addDoc(collection(db, "cast_applications"), formData);
+                        showStatus("Your application has been submitted successfully! We'll contact you soon.", true);
+                        castForm.reset();
+                    } catch (error) {
+                        console.error("Error submitting application:", error);
+                        showStatus("Error submitting application. Please try again.", false);
+                    } finally {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Submit Application';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,614 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: aliceblue;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #000;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+#page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+/* Growth Page Specific Styles */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 8px;
+}
+
+.section-title {
+    font-size: 32px;
+    color: #D1B261;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Hero Section */
+.hero-section {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto 40px auto;
+    padding: 40px 15px;
+    max-width: 1200px;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #D1B261;
+    text-shadow: 1px 1px 3px rgba(209, 178, 97, 0.5);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Story Section */
+.story-section {
+    padding: 30px 0;
+    margin: 0 auto 40px auto;
+    max-width: 1200px;
+    position: relative;
+}
+
+.story-section::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: rgba(209, 178, 97, 0.2);
+}
+
+.tagline {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #D1B261;
+    font-weight: 500;
+}
+
+.story-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.6;
+    padding: 0 15px;
+}
+
+/* Revolution Section */
+.revolution-section {
+    padding: 40px 15px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    position: relative;
+}
+
+.revolution-section::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: rgba(209, 178, 97, 0.2);
+}
+
+.revolution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.revolution-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.revolution-item:hover {
+    transform: translateY(-3px);
+}
+
+.revolution-icon {
+    font-size: 22px;
+    color: #D1B261;
+    flex-shrink: 0;
+}
+
+.revolution-content h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #D1B261;
+    font-weight: 600;
+}
+
+.revolution-content p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* Charts Section */
+.charts-section {
+    padding: 40px 15px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    position: relative;
+}
+
+.charts-section::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: rgba(209, 178, 97, 0.2);
+}
+
+.charts-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    padding: 10px;
+    height: 300px;
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    margin-bottom: 30px;
+}
+
+.chart-container h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #D1B261;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Vision Section */
+.vision-section {
+    padding: 40px 15px;
+    margin: 0 auto 40px auto;
+    max-width: 1200px;
+}
+
+.vision-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.vision-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 15px;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.5;
+    text-align: center;
+    color: #D1B261;
+}
+
+.cta-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cta-container h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #D1B261;
+    font-weight: 600;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-gold {
+    background-color: #D1B261;
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-gold:hover {
+    background-color: #b99b4f;
+    transform: translateY(-2px);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1366px) {
+    .charts-grid {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
+@media (max-width: 1280px) {
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #page {
+        padding: 0 10px;
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+
+    .hero-content p {
+        font-size: 17px;
+    }
+
+    .charts-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+        width: 100%;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .tagline {
+        font-size: 20px;
+    }
+
+    .blockquote {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 900px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 30px 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .section-title {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .tagline {
+        font-size: 18px;
+    }
+
+    .story-content {
+        font-size: 16px;
+    }
+
+    .revolution-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .revolution-content h3 {
+        font-size: 18px;
+    }
+
+    .revolution-content p {
+        font-size: 14px;
+    }
+
+    .vision-content {
+        font-size: 16px;
+    }
+
+    blockquote {
+        font-size: 18px;
+    }
+
+    .cta-container h3 {
+        font-size: 22px;
+    }
+
+    .charts-section::after,
+    .revolution-section::after,
+    .story-section::after {
+        width: 90%;
+    }
+}
+
+@media (max-width: 640px) {
+    .revolution-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    #page {
+        padding: 0 5px;
+    }
+
+    .hero-section {
+        padding: 25px 10px;
+        margin-bottom: 30px;
+    }
+
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .tagline {
+        font-size: 17px;
+    }
+
+    .story-content {
+        font-size: 15px;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+
+    .story-section {
+        padding: 25px 0;
+        margin-bottom: 30px;
+    }
+
+    .revolution-section {
+        padding: 25px 10px;
+        margin-bottom: 30px;
+    }
+
+    .revolution-item {
+        padding: 12px 5px;
+    }
+
+    .revolution-icon {
+        font-size: 20px;
+    }
+
+    .revolution-content h3 {
+        font-size: 17px;
+    }
+
+    .revolution-content p {
+        font-size: 14px;
+    }
+
+    .charts-section {
+        padding: 25px 10px;
+        margin-bottom: 30px;
+    }
+
+    .charts-grid {
+        gap: 15px;
+        margin-bottom: 15px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .chart-container {
+        padding: 8px 5px;
+        height: 260px;
+        margin-bottom: 15px;
+    }
+
+    .chart-container h3 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .vision-section {
+        padding: 25px 10px;
+        margin-bottom: 30px;
+    }
+
+    .vision-content {
+        font-size: 15px;
+    }
+
+    blockquote {
+        font-size: 16px;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .cta-container {
+        margin-top: 20px;
+    }
+
+    .cta-container h3 {
+        font-size: 19px;
+        margin-bottom: 15px;
+    }
+
+    .btn-gold {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    .charts-section::after,
+    .revolution-section::after,
+    .story-section::after {
+        width: 100%;
+    }
+
+    canvas.chartjs-render-monitor {
+        max-height: 160px !important;
+    }
+
+    .chart-container:nth-child(3) canvas,
+    .chart-container:nth-child(4) canvas {
+        max-height: 140px !important;
+        transform: translateY(-8px);
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-content h1 {
+        font-size: 26px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .tagline {
+        font-size: 16px;
+    }
+
+    .story-content,
+    .vision-content {
+        font-size: 14px;
+    }
+
+    .revolution-item {
+        padding: 10px 0;
+    }
+
+    .revolution-content h3 {
+        font-size: 16px;
+    }
+
+    .revolution-content p {
+        font-size: 13px;
+    }
+
+    .chart-container {
+        height: 230px;
+        padding: 8px 5px;
+        margin-bottom: 15px;
+    }
+
+    .chart-container h3 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .btn-gold {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    blockquote {
+        font-size: 15px;
+    }
+
+    .cta-container h3 {
+        font-size: 18px;
+    }
+
+    .chart-container:nth-child(3) canvas,
+    .chart-container:nth-child(4) canvas {
+        max-height: 120px !important;
+        transform: translateY(-8px);
+    }
+}
+
+/* Add canvas overrides for charts to ensure they don't cause scrolling */
+canvas.chartjs-render-monitor {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 85% !important;
+    max-height: 200px !important;
+    display: block !important;
+    margin: 0 auto;
+}
+
+/* Additional fixes for pie charts specifically */
+.chart-container:nth-child(3) canvas,
+.chart-container:nth-child(4) canvas {
+    height: 70% !important;
+    max-height: 170px !important;
+    margin: 0 auto;
+    transform: translateY(-5px);
+}

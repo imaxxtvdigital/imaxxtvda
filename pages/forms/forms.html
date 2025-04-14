@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Personal Information Form</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Big+Shoulders+Display:wght@100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Add AOS (Animate On Scroll) Library for smooth scroll animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="forms.css"> <!-- Linking the CSS file -->
+
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Personal Information Form</h1><br>
+        <br>
+        <form id="form" method="POST"
+            action="https://script.google.com/macros/s/AKfycbwkO4ercpzQ1Og14VKgxi0hgqLK9MCJHAK7ca8eThX6vFQ2Y1BsVHxHal-jOgTEaXcpbg/exec">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="no">Phone Number</label>
+                <input type="number" id="no" name="no" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="reference_no">Reference Number</label>
+                <input type="number" id="reference_no" name="reference_no" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <!-- <div class="form-group">
+                <label for="selection">Selection</label>
+                <select id="selection" name="selection" required>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+            </div> -->
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="aadhaar">Aadhaar Number</label>
+                <input type="number" id="aadhaar" name="aadhaar" required>
+            </div>
+            <div class="form-group">
+                <label for="pan">PAN Number</label>
+                <input type="text" id="pan" name="pan" required>
+            </div>
+            <div class="form-group">
+                <label for="occupation">Occupation</label>
+                <input type="text" id="occupation" name="occupation" required>
+            </div>
+            <div class="form-group">
+                <label for="education">Education</label>
+                <input type="text" id="education" name="education" required>
+            </div>
+            <div class="form-group">
+                <label for="parent_details">Parent Name (For Under 18)</label>
+                <input type="text" id="parent_details" name="parent_details">
+
+
+            </div>
+            <div class="form-group">
+                <label for="parent_details">Parent Contact (For Under 18)</label>
+                <input type="number" id="parent_details" name="parent_details">
+            </div>
+            <div class="form-group">
+                <label for="parent_details">Parent Aadhaar Number (For Under 18)</label>
+                <input type="text" id="parent_details" name="parent_details">
+            </div>
+            <!-- <div class="form-group">
+                <label for="parent_details">Parent Aadhaar Number (For Under 18)</label>
+                <input type="text" id="parent_details" name="parent_details">
+            </div> -->
+            <div class="form-group">
+                <label for="parent_details">Parent Aadhaar Number (For Under 18)</label>
+                <input type="text" id="parent_details" name="parent_details">
+            </div>
+            <div class="form-group">
+                <label for="parent_details">Reels Link</label>
+                <input type="text" id="parent_details" name="parent_details">
+            </div>
+
+
+            <div class="form-group" id="submitssss">
+                <input type="submit" value="Submit">
+            </div>
+    </div>
+    </form>
+    <br>
+
+    <script>
+        function doPost(e) {
+            var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1"); // Adjust sheet name as needed
+            var data = e.parameter;
+
+            var row = [
+                data.name,
+                data.no,
+                data.email,
+                data.address,
+                data.reference_no,
+                data.age,
+                data.selection,
+                data.city,
+                data.dob,
+                data.gender,
+                data.aadhaar,
+                data.pan,
+                data.occupation,
+                data.education,
+                data.parent_details
+            ];
+
+            sheet.appendRow(row);
+            return ContentService.createTextOutput("Success");
+        }
+
+    </script>
+</body>
+
+</html>

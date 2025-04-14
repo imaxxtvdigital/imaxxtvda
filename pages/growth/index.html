@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Growth - IMAXX TV</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #mbcbtns {
+            z-index: 999;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: block !important;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Our Growth</h1>
+                <p>From ambitious vision to India's fastest growing OTT platform</p>
+            </div>
+        </section>
+
+        <!-- Origin Story Section -->
+        <section class="story-section">
+            <div class="container">
+                <h2 class="section-title">IMAXX – Unlimited Entertainment. Unbelievably Affordable.</h2>
+                <div class="tagline">Born in 2023. Built for India.</div>
+
+                <div class="story-content">
+                    <p>In a market where bold content commands premium prices, IMAXX emerged in September 2023 with a
+                        bold idea of its own – to make quality non-bold entertainment accessible to everyone. Today,
+                        we're India's fastest-growing value OTT platform, proving that great stories don't need shocking
+                        content or shocking prices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Revolution Points Section -->
+        <section class="revolution-section">
+            <div class="container">
+                <h2 class="section-title">Our Revolution</h2>
+
+                <div class="revolution-grid">
+                    <div class="revolution-item">
+                        <div class="revolution-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="revolution-content">
+                            <h3>Pocket TV for Free</h3>
+                            <p>Watch anywhere, anytime – because entertainment should be freedom</p>
+                        </div>
+                    </div>
+
+                    <div class="revolution-item">
+                        <div class="revolution-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="revolution-content">
+                            <h3>From just ₹49/month</h3>
+                            <p>The most affordable premium OTT subscription in India</p>
+                        </div>
+                    </div>
+
+                    <div class="revolution-item">
+                        <div class="revolution-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="revolution-content">
+                            <h3>Global Hits, Local Heart</h3>
+                            <p>Already featuring Turkish, Pakistani & Korean content – with more coming</p>
+                        </div>
+                    </div>
+
+                    <div class="revolution-item">
+                        <div class="revolution-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="revolution-content">
+                            <h3>Startup Success Story</h3>
+                            <p>From ₹3 crore seed investment to ₹7 crore valuation in months</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Growth Charts Section -->
+        <section class="charts-section">
+            <div class="container">
+                <h2 class="section-title">Our Growth in Numbers</h2>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>User Growth</h3>
+                        <canvas id="userGrowthChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>Revenue Growth</h3>
+                        <canvas id="revenueGrowthChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>Content Distribution</h3>
+                        <canvas id="contentPieChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>Subscriber Categories</h3>
+                        <canvas id="subscriberPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Vision Section -->
+        <section class="vision-section">
+            <div class="container">
+                <h2 class="section-title">What's Next?</h2>
+
+                <div class="vision-content">
+                    <p>We're investing $3 to $5 million to bring you even more world-class entertainment. Because at
+                        IMAXX,
+                        we believe:</p>
+                    <blockquote>
+                        <p>Great stories should be for everyone.<br>
+                            Great entertainment at pocket friendly prices.</p>
+                    </blockquote>
+                </div>
+
+                <div class="cta-container">
+                    <h3>Join India's Entertainment Revolution</h3>
+                    <div class="cta-buttons">
+                        <a href="https://imaxxtv.com" class="btn-gold" target="_blank">Watch Now</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.imaxxtv.app&hl=en_IN&pli=1"
+                            class="btn-gold" target="_blank">Download App</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Back Button -->
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <script>
+        // Go back function
+        function goBack() {
+            window.history.back();
+        }
+
+        // Chart.js Initialization
+        document.addEventListener('DOMContentLoaded', function () {
+            // User Growth Chart
+            const userCtx = document.getElementById('userGrowthChart').getContext('2d');
+            const userGrowthChart = new Chart(userCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Sep 2023', 'Oct 2023', 'Nov 2023', 'Dec 2023', 'Jan 2024', 'Feb 2024', 'Mar 2024'],
+                    datasets: [{
+                        label: 'Monthly Active Users',
+                        data: [1000, 5000, 12000, 25000, 42000, 68000, 95000],
+                        backgroundColor: 'rgba(209, 178, 97, 0.2)',
+                        borderColor: '#D1B261',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                maxTicksLimit: 6
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                maxRotation: 45,
+                                minRotation: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Revenue Growth Chart
+            const revenueCtx = document.getElementById('revenueGrowthChart').getContext('2d');
+            const revenueGrowthChart = new Chart(revenueCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Sep 2023', 'Oct 2023', 'Nov 2023', 'Dec 2023', 'Jan 2024', 'Feb 2024', 'Mar 2024'],
+                    datasets: [{
+                        label: 'Monthly Revenue (₹ Lakhs)',
+                        data: [0.5, 2, 5, 12, 18, 25, 35],
+                        backgroundColor: '#D1B261',
+                        borderWidth: 0,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                maxTicksLimit: 5
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                maxRotation: 45,
+                                minRotation: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Content Distribution Pie Chart
+            const contentCtx = document.getElementById('contentPieChart').getContext('2d');
+            const contentData = {
+                labels: ['Movies', 'Series', 'Reality Shows', 'Documentaries', 'Kids Content'],
+                datasets: [{
+                    data: [40, 25, 15, 12, 8],
+                    backgroundColor: [
+                        '#D1B261',
+                        '#D4BE7C',
+                        '#D8CA98',
+                        '#DBD6B3',
+                        '#DFE2CF'
+                    ],
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            };
+            const contentPieChart = new Chart(contentCtx, {
+                type: 'pie',
+                data: contentData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            top: 0,
+                            right: 0,
+                            bottom: 20,
+                            left: 0
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'center',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 10
+                                },
+                                boxWidth: 8,
+                                padding: 2
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.label || '';
+                                    let value = context.raw || 0;
+                                    let total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    let percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${percentage}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Subscriber Categories Pie Chart
+            const subscribersCtx = document.getElementById('subscriberPieChart').getContext('2d');
+            const subscribersData = {
+                labels: ['Basic Plan', 'Standard Plan', 'Premium Plan', 'Free Tier'],
+                datasets: [{
+                    data: [45, 30, 15, 10],
+                    backgroundColor: [
+                        '#D1B261',
+                        '#A68D4E',
+                        '#7C693A',
+                        '#524627'
+                    ],
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            };
+            const subscriberPieChart = new Chart(subscribersCtx, {
+                type: 'pie',
+                data: subscribersData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            top: 0,
+                            right: 0,
+                            bottom: 20,
+                            left: 0
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'center',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 10
+                                },
+                                boxWidth: 8,
+                                padding: 2
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.label || '';
+                                    let value = context.raw || 0;
+                                    let total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    let percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${percentage}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

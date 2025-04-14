@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Debug Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #039BE5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0277BD;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            min-height: 100px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .log {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+            font-family: monospace;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Firebase Debug Tool</h1>
+
+    <div class="card">
+        <h2>Test Firebase Integration</h2>
+        <p>This tool helps you test if Firebase is working correctly without going through the full registration
+            process.</p>
+
+        <button id="testRead">Test Read</button>
+        <button id="testWrite">Test Write</button>
+        <button id="testUpdate">Test Update</button>
+
+        <div class="result" id="result">
+            Results will appear here...
+        </div>
+
+        <h3>Console Log</h3>
+        <div class="log" id="log"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Log function to display in the UI
+        function log(message, type = 'info') {
+            console.log(message);
+            const logElement = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            entry.className = type;
+            logElement.appendChild(entry);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        // Show result
+        function showResult(message, isSuccess = true) {
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = message;
+            resultElement.className = isSuccess ? 'result success' : 'result error';
+        }
+
+        // Initialize Firebase
+        let app, db;
+        try {
+            log("Initializing Firebase...");
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            log("Firebase initialized successfully", 'success');
+            showResult("Firebase initialized successfully. Click a button to test functionality.", true);
+        } catch (error) {
+            log("Error initializing Firebase: " + error.message, 'error');
+            showResult("Error initializing Firebase: " + error.message, false);
+        }
+
+        // Test reading from Firestore
+        async function testRead() {
+            log("Testing Firebase read operation...");
+            showResult("Testing Firebase read operation...");
+
+            try {
+                const q = query(collection(db, "users"), limit(5));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    log("No documents found in 'users' collection", 'info');
+                    showResult("Read successful but no documents found in 'users' collection", true);
+                } else {
+                    log(`Found ${querySnapshot.size} documents in 'users' collection`, 'success');
+                    let docs = [];
+                    querySnapshot.forEach(doc => {
+                        log(`Document ID: ${doc.id}`, 'info');
+                        docs.push(doc.id);
+                    });
+                    showResult(`Read successful! Found ${querySnapshot.size} documents: ${docs.join(', ')}`, true);
+                }
+            } catch (error) {
+                log("Error reading from Firestore: " + error.message, 'error');
+                showResult("Error reading from Firestore: " + error.message, false);
+            }
+        }
+
+        // Test writing to Firestore
+        async function testWrite() {
+            log("Testing Firebase write operation...");
+            showResult("Testing Firebase write operation...");
+
+            try {
+                const testData = {
+                    test: true,
+                    message: "Test document",
+                    timestamp: serverTimestamp()
+                };
+
+                const docRef = await addDoc(collection(db, "debug_tests"), testData);
+                log(`Document written with ID: ${docRef.id}`, 'success');
+                showResult(`Write successful! Document ID: ${docRef.id}`, true);
+
+                // Store the document ID for later cleanup
+                window.lastTestDocId = docRef.id;
+            } catch (error) {
+                log("Error writing to Firestore: " + error.message, 'error');
+                showResult("Error writing to Firestore: " + error.message, false);
+            }
+        }
+
+        // Test updating in Firestore
+        async function testUpdate() {
+            log("Testing Firebase update operation...");
+            showResult("Testing Firebase update operation...");
+
+            if (!window.lastTestDocId) {
+                log("No test document to update. Please run 'Test Write' first.", 'error');
+                showResult("No test document to update. Please run 'Test Write' first.", false);
+                return;
+            }
+
+            try {
+                const docRef = doc(db, "debug_tests", window.lastTestDocId);
+                await updateDoc(docRef, {
+                    updated: true,
+                    updateTimestamp: serverTimestamp()
+                });
+
+                log(`Document ${window.lastTestDocId} updated successfully`, 'success');
+                showResult(`Update successful! Document ID: ${window.lastTestDocId}`, true);
+
+                // Clean up after 5 seconds
+                setTimeout(async () => {
+                    try {
+                        await deleteDoc(docRef);
+                        log(`Test document ${window.lastTestDocId} deleted`, 'info');
+                        window.lastTestDocId = null;
+                    } catch (e) {
+                        log("Error deleting test document: " + e.message, 'error');
+                    }
+                }, 5000);
+            } catch (error) {
+                log("Error updating Firestore document: " + error.message, 'error');
+                showResult("Error updating Firestore document: " + error.message, false);
+            }
+        }
+
+        // Add event listeners once the DOM is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('testRead').addEventListener('click', testRead);
+            document.getElementById('testWrite').addEventListener('click', testWrite);
+            document.getElementById('testUpdate').addEventListener('click', testUpdate);
+        });
+    </script>
+</body>
+
+</html>

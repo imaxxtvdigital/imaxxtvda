@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Connectivity Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+        }
+
+        .success {
+            color: green;
+            background-color: #e8f5e9;
+        }
+
+        .error {
+            color: red;
+            background-color: #ffebee;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Firebase Connectivity Test</h1>
+    <p>This is a minimal test to verify Firebase connectivity.</p>
+
+    <button id="testButton">Test Firebase Connection</button>
+
+    <div id="result" class="result">
+        Click the button to test the connection.
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Get DOM elements
+        const testButton = document.getElementById('testButton');
+        const resultDiv = document.getElementById('result');
+
+        // Test function
+        async function testFirebaseConnection() {
+            resultDiv.className = 'result';
+            resultDiv.textContent = 'Testing connection...';
+
+            try {
+                // Try to write a simple document to Firestore
+                const testData = {
+                    message: "Connectivity test",
+                    timestamp: serverTimestamp()
+                };
+
+                const docRef = await addDoc(collection(db, "connectivity_tests"), testData);
+
+                // Success
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `Connection successful! Document written with ID: ${docRef.id}`;
+                console.log("Firebase connection successful, document ID:", docRef.id);
+
+                return true;
+            } catch (error) {
+                // Error
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `Connection failed: ${error.message}`;
+                console.error("Firebase connection failed:", error);
+
+                return false;
+            }
+        }
+
+        // Add event listener to the button
+        testButton.addEventListener('click', testFirebaseConnection);
+    </script>
+</body>
+
+</html>

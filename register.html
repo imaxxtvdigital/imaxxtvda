@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Register</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="register.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        img {
+            margin-top: 30px;
+            margin-bottom: -30px;
+            width: 90%;
+            max-width: 1040px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        h2 {
+            color: rgb(255, 255, 255);
+            text-align: left;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        h3,
+        p {
+            color: rgb(255, 255, 255);
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+
+        form {
+            position: relative;
+            /* Needed for the pseudo-element */
+            padding: 20px;
+            margin: 70px;
+            width: 90%;
+            color: white;
+            max-width: 1000px;
+        }
+
+        form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/Assests/directors/photo_2025-03-06\ 15.18.52.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: inherit;
+
+            /* Add a semi-transparent overlay */
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Adjust alpha for more/less darkness */
+        }
+
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            margin: 5px 0;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .row div {
+            flex: 1;
+            min-width: 100%;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        h3 {
+            position: relative;
+            margin-bottom: 5px;
+            text-align: left;
+            width: 100%;
+            color: rgb(255, 255, 255);
+        }
+
+        h3:after {
+            content: '';
+            display: block;
+            width: 3%;
+            height: 3px;
+            background-color: red;
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            gap: 20px;
+        }
+
+        button {
+            background-color: red;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: darkred;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 10px auto;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid red;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            color: #4CAF50;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Payment Receipt Card */
+        .receipt-card {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 1px solid #444;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            color: white;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .receipt-card h3 {
+            color: #F37254;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .receipt-card .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 5px;
+        }
+
+        .receipt-card .label {
+            font-weight: bold;
+            color: #ccc;
+        }
+
+        .receipt-card .value {
+            text-align: right;
+        }
+
+        .receipt-card .payment-id {
+            color: #F37254;
+            font-weight: bold;
+        }
+
+        .receipt-card .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .receipt-card button {
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: #F37254;
+            color: white;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .receipt-card button.download {
+            background-color: #4CAF50;
+        }
+
+        .receipt-card button:hover {
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .row {
+                gap: 20px;
+            }
+
+            .row div {
+                min-width: calc(50% - 10px);
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
+            form {
+                margin: 40px auto;
+                width: 90%;
+                max-width: 1000px;
+                padding: 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .row div {
+                min-width: calc(33.33% - 10px);
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
+            form {
+                margin: 40px auto;
+                width: 90%;
+                max-width: 1000px;
+            }
+
+            .row {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .row div {
+                min-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            form {
+                margin: 20px auto;
+                padding: 15px;
+                width: 90%;
+            }
+
+            .row {
+                gap: 10px;
+            }
+
+            img {
+                height: 100px;
+                margin-bottom: -15px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+
+            /* Make gender options display in a row with less gap */
+            .gender-options {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 5px;
+                margin-top: 3px;
+            }
+
+            .gender-options div {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+            }
+
+            .checkbox {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+                margin-top: 5px;
+            }
+
+            .checkbox input[type="radio"],
+            .checkbox input[type="checkbox"] {
+                margin-right: 3px;
+            }
+
+            .receipt-card {
+                width: 90%;
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .receipt-card .buttons {
+                flex-direction: column;
+            }
+
+            .receipt-card button {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        /* Additional mobile improvements */
+        @media (max-width: 480px) {
+            body {
+                padding: 0 10px;
+            }
+
+            img {
+                height: 80px;
+                margin-top: 15px;
+                margin-bottom: -15px;
+            }
+
+            form {
+                margin: 15px auto;
+                padding: 15px;
+                width: 90%;
+                box-sizing: border-box;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="date"],
+            select {
+                padding: 8px;
+                font-size: 14px;
+                margin: 3px 0;
+            }
+
+            .row {
+                gap: 0;
+                margin-bottom: 3px;
+            }
+
+            h3:after {
+                width: 8%;
+            }
+
+            .receipt-card {
+                margin: 15px auto;
+                padding: 15px;
+                width: 90%;
+            }
+
+            .receipt-card .receipt-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .receipt-card .value {
+                text-align: left;
+                word-break: break-all;
+            }
+
+            label {
+                margin-bottom: 2px;
+                display: block;
+            }
+
+            /* Further reduce gender options gap */
+            .gender-options {
+                gap: 5px;
+                justify-content: space-evenly;
+                margin-top: 2px;
+            }
+
+            .checkbox {
+                gap: 2px;
+                margin-top: 3px;
+            }
+
+            /* Fix terms checkbox alignment */
+            .checkbox label {
+                margin-left: 5px;
+            }
+
+            /* Reduce spacing between sections */
+            h3 {
+                margin-top: 10px;
+                margin-bottom: 3px;
+            }
+        }
+
+        /* Updated margins for mobile and tablet */
+        @media (max-width: 767px) {
+            body {
+                padding: 0 15px;
+            }
+
+            form {
+                margin: 20px auto;
+                padding: 15px;
+                width: 90%;
+            }
+
+            .row div {
+                margin-left: 0;
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="date"],
+            select {
+                margin: 3px 0 8px 0;
+            }
+
+            .receipt-card {
+                margin: 20px auto;
+                width: 90%;
+            }
+        }
+
+        /* Tablet specific margins */
+        @media (min-width: 481px) and (max-width: 767px) {
+            body {
+                padding: 0 20px;
+            }
+
+            form {
+                margin: 40px auto;
+                padding: 25px;
+                width: 90%;
+            }
+        }
+
+        /* Additional styling for select elements to match other inputs */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-color: white;
+            padding: 10px;
+            padding-right: 30px;
+            height: 42px;
+            line-height: 1.5;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 480px) {
+            select {
+                height: 38px;
+                padding: 8px;
+                padding-right: 30px;
+                background-position: right 8px center;
+                line-height: 1.4;
+            }
+        }
+
+        /* Fix for Firefox to ensure consistent height */
+        @-moz-document url-prefix() {
+            select {
+                height: 42px;
+                padding-top: 9px;
+                padding-bottom: 9px;
+            }
+
+            @media (max-width: 480px) {
+                select {
+                    height: 38px;
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img src="/Assests/directors/photo_2025-03-06 15.18.48.jpeg" alt="Top Image">
+    <form id="registrationForm">
+        <h2>Registration Form</h2>
+        <p>This space is where you can share information on the section, In capital.</p>
+
+        <h3>PERSONAL INFORMATION</h3>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <div class="row">
+            <div>
+                <label for="nickName">Nick Name:</label>
+                <input type="text" id="nickName" name="nickName" required>
+            </div>
+            <div>
+                <label for="birthPlace">Place of Birth:</label>
+                <input type="text" id="birthPlace" name="birthPlace" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div>
+                <label for="nationality">Nationality:</label>
+                <input type="text" id="nationality" name="nationality" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div>
+                <label for="pan">PAN No:</label>
+                <input type="text" id="pan" name="pan" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="maritalStatus">Marital Status:</label>
+                <input type="text" id="maritalStatus" name="maritalStatus" required>
+            </div>
+            <div>
+                <label for="city">Current City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+            <div>
+                <label for="postcode">Post Code:</label>
+                <input type="text" id="postcode" name="postcode" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="nationalId">National ID No:</label>
+                <input type="text" id="nationalId" name="nationalId" required>
+            </div>
+            <div>
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+        </div>
+
+        <h3>EXPERIENCE</h3>
+        <label for="showsPerformed">Shows Performed:</label>
+        <input type="text" id="showsPerformed" name="showsPerformed">
+
+        <div class="row">
+            <div>
+                <label for="videoLink">Video Link:</label>
+                <input type="text" id="videoLink" name="videoLink">
+            </div>
+            <div>
+                <label for="instagram">Instagram:</label>
+                <input type="text" id="instagram" name="instagram">
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label for="facebook">Facebook:</label>
+                <input type="text" id="facebook" name="facebook">
+            </div>
+            <div>
+                <label for="youtube">YouTube:</label>
+                <input type="text" id="youtube" name="youtube">
+            </div>
+        </div>
+
+        <label for="previousShows">Previous Shows:</label>
+        <input type="text" id="previousShows" name="previousShows">
+
+        <label for="bestGig">Best Laughter Gig:</label>
+        <input type="text" id="bestGig" name="bestGig">
+
+        <label for="cityPerformedIn">City Performed In:</label>
+        <input type="text" id="cityPerformedIn" name="cityPerformedIn">
+
+        <div class="checkbox">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the terms and conditions</label>
+        </div>
+
+        <button type="button" id="submitButton">Submit Registration</button>
+        <div class="spinner" id="loadingSpinner"></div>
+        <div class="success-message" id="successMessage"></div>
+    </form>
+
+    <!-- Payment Receipt Card -->
+    <div class="receipt-card" id="receiptCard">
+        <h3>Registration Successful</h3>
+        <div class="receipt-row">
+            <span class="label">Name:</span>
+            <span class="value" id="receipt-name"></span>
+        </div>
+        <div class="receipt-row">
+            <span class="label">Email:</span>
+            <span class="value" id="receipt-email"></span>
+        </div>
+        <div class="receipt-row">
+            <span class="label">Phone:</span>
+            <span class="value" id="receipt-phone"></span>
+        </div>
+        <div class="receipt-row">
+            <span class="label">Registration ID:</span>
+            <span class="value" id="receipt-user-id"></span>
+        </div>
+        <div class="receipt-row">
+            <span class="label">Amount Paid:</span>
+            <span class="value" id="receipt-amount"></span>
+        </div>
+        <div class="receipt-row">
+            <span class="label">Payment ID:</span>
+            <span class="value payment-id" id="receipt-payment-id"></span>
+        </div>
+        <div class="receipt-row">
+            <span class="label">Date:</span>
+            <span class="value" id="receipt-date"></span>
+        </div>
+        <div class="buttons">
+            <button type="button" class="download" id="downloadReceiptBtn">Download Receipt</button>
+            <button type="button" id="homeBtn">Go to Homepage</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp, getDocs, query, limit, deleteDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:163e36e998c7db2a665600",
+            measurementId: "G-EQERDT2CXR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const analytics = getAnalytics(app);
+
+        // Razorpay key
+        const razorpayKeyId = "rzp_live_WJiUP1IdD92AnP";
+
+        // Registration fee amount in paise (₹1 = 100 paise)
+        const registrationFeeAmount = 25000;
+
+        // Function to create a basic order ID (client-side only)
+        function generateOrderId() {
+            return 'order_' + Math.random().toString(36).substring(2, 15) +
+                Math.random().toString(36).substring(2, 15);
+        }
+
+        // Debug function to show errors in the UI
+        function showError(message, error) {
+            console.error(message, error);
+            document.getElementById('loadingSpinner').style.display = 'none';
+
+            // Show error in the success message area but in red
+            const successMessage = document.getElementById('successMessage');
+            successMessage.textContent = `Error: ${message}. Please try again or contact support.`;
+            successMessage.style.color = '#FF5555';
+            successMessage.style.display = 'block';
+
+            // If there's a detailed error, log it to console
+            if (error) {
+                console.error('Detailed error:', error);
+            }
+        }
+
+        document.getElementById('submitButton').addEventListener('click', async function (e) {
+            e.preventDefault();
+
+            // Clear any previous error messages
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'none';
+            successMessage.style.color = '#4CAF50';
+
+            // Form validation
+            const form = document.getElementById('registrationForm');
+            if (!form.checkValidity()) {
+                alert('Please fill all required fields');
+                return;
+            }
+
+            // Check terms agreement
+            if (!document.getElementById('terms').checked) {
+                alert('Please agree to the terms and conditions');
+                return;
+            }
+
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+
+            try {
+                // Collect form data
+                const formData = {
+                    // Personal Information
+                    personalInfo: {
+                        fullName: document.getElementById('fullName').value,
+                        nickName: document.getElementById('nickName').value,
+                        birthPlace: document.getElementById('birthPlace').value,
+                        dob: document.getElementById('dob').value,
+                        nationality: document.getElementById('nationality').value,
+                        email: document.getElementById('email').value,
+                        state: document.getElementById('state').value,
+                        gender: document.getElementById('gender').value,
+                        pan: document.getElementById('pan').value,
+                        maritalStatus: document.getElementById('maritalStatus').value,
+                        city: document.getElementById('city').value,
+                        country: document.getElementById('country').value,
+                        postcode: document.getElementById('postcode').value,
+                        nationalId: document.getElementById('nationalId').value,
+                        phone: document.getElementById('phone').value
+                    },
+
+                    // Experience Information
+                    experienceInfo: {
+                        showsPerformed: document.getElementById('showsPerformed').value,
+                        videoLink: document.getElementById('videoLink').value,
+                        instagram: document.getElementById('instagram').value,
+                        facebook: document.getElementById('facebook').value,
+                        youtube: document.getElementById('youtube').value,
+                        previousShows: document.getElementById('previousShows').value,
+                        bestGig: document.getElementById('bestGig').value,
+                        cityPerformedIn: document.getElementById('cityPerformedIn').value
+                    },
+
+                    // Registration and Payment Status
+                    registrationInfo: {
+                        paymentStatus: 'pending',
+                        registrationDate: serverTimestamp(),
+                        termsAccepted: true
+                    }
+                };
+
+                console.log("Saving comprehensive user data to Firebase...");
+
+                // Save user data to Firestore
+                const userDocRef = await addDoc(collection(db, "users"), formData);
+                console.log("User data saved with ID:", userDocRef.id);
+
+                // Create a Razorpay order
+                initiateRazorpayPayment(userDocRef.id, formData.personalInfo);
+
+            } catch (error) {
+                showError("Failed to save registration data", error);
+            }
+        });
+
+        function initiateRazorpayPayment(userId, userData) {
+            try {
+                // Check if Razorpay is available
+                if (typeof Razorpay === 'undefined') {
+                    throw new Error("Payment system is not available. Please refresh the page or try again later.");
+                }
+
+                // Generate a client-side order ID
+                const orderId = generateOrderId();
+
+                // Create a Razorpay instance with simplified options
+                var options = {
+                    "key": razorpayKeyId,
+                    "amount": registrationFeeAmount,
+                    "currency": "INR",
+                    "name": "IMAXX TV Digital",
+                    "description": "Registration Fee",
+                    "prefill": {
+                        "name": userData.fullName,
+                        "email": userData.email,
+                        "contact": userData.phone
+                    },
+                    "notes": {
+                        "userId": userId
+                    },
+                    "theme": {
+                        "color": "#F37254"
+                    },
+                    "modal": {
+                        "ondismiss": function () {
+                            document.getElementById('loadingSpinner').style.display = 'none';
+                            alert("Payment cancelled. You can try again later.");
+                        }
+                    },
+                    "handler": function (response) {
+                        // This handler is called when payment is successful
+                        console.log("Payment successful with ID: " + response.razorpay_payment_id);
+
+                        // Process the payment and show receipt instead of redirecting
+                        handlePaymentSuccess(response, userId, userData);
+                    }
+                };
+
+                console.log("Opening Razorpay with amount: " + options.amount + " paise");
+                var rzp1 = new Razorpay(options);
+
+                // Add event listeners for payment errors
+                rzp1.on('payment.failed', function (response) {
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                    showError("Payment failed: " + response.error.description);
+                });
+
+                // Set a timeout to handle cases where Razorpay modal doesn't open
+                const razorpayTimeout = setTimeout(() => {
+                    document.getElementById('loadingSpinner').style.display = 'none';
+                    showError("Payment system is taking too long to respond. Please try again later.");
+                }, 5000); // 5 second timeout
+
+                rzp1.open();
+
+                // Clear the timeout once the modal is opened
+                setTimeout(() => {
+                    clearTimeout(razorpayTimeout);
+                }, 1000);
+
+            } catch (error) {
+                showError("Failed to initialize payment", error);
+            }
+        }
+
+        async function handlePaymentSuccess(response, userId, userData) {
+            try {
+                // Hide spinner
+                document.getElementById('loadingSpinner').style.display = 'none';
+
+                const paymentTimestamp = serverTimestamp();
+                console.log("Payment successful! Updating Firebase records...");
+
+                // Update user document with payment information
+                const userRef = doc(db, "users", userId);
+                await updateDoc(userRef, {
+                    "registrationInfo.paymentStatus": 'paid',
+                    "registrationInfo.razorpayPaymentId": response.razorpay_payment_id,
+                    "registrationInfo.paymentDate": paymentTimestamp,
+                    "registrationInfo.paymentAmount": registrationFeeAmount,
+                    "registrationInfo.paymentCurrency": "INR",
+                    "registrationInfo.paymentConfirmed": true,
+                    "registrationInfo.lastUpdated": paymentTimestamp
+                });
+                console.log("User record updated with payment information");
+
+                // Create a detailed payment record
+                const paymentRef = await addDoc(collection(db, "payments"), {
+                    userId: userId,
+                    razorpayPaymentId: response.razorpay_payment_id,
+                    amount: registrationFeeAmount,
+                    currency: "INR",
+                    status: 'completed',
+                    paymentDate: paymentTimestamp,
+                    userEmail: userData.email,
+                    userName: userData.fullName,
+                    userPhone: userData.phone,
+                    paymentConfirmed: true,
+                    createdAt: paymentTimestamp
+                });
+                console.log("Payment record created successfully with ID:", paymentRef.id);
+
+                // Show receipt card with user details
+                showReceiptCard(response, userId, userData);
+
+            } catch (error) {
+                console.error("Error updating payment status:", error);
+                showError("Error processing payment. Your payment was successful, but we couldn't update your records. Please contact support with your payment ID: " + response.razorpay_payment_id);
+
+                // Try one more time to update Firebase
+                try {
+                    console.log("Attempting to update Firebase records again...");
+                    const userRef = doc(db, "users", userId);
+                    await updateDoc(userRef, {
+                        "registrationInfo.paymentStatus": 'paid',
+                        "registrationInfo.razorpayPaymentId": response.razorpay_payment_id,
+                        "registrationInfo.retryUpdate": true
+                    });
+                    console.log("Basic payment information updated on retry");
+                } catch (retryError) {
+                    console.error("Retry also failed:", retryError);
+                }
+            }
+        }
+
+        // Function to show receipt card
+        function showReceiptCard(response, userId, userData) {
+            // Hide the form
+            document.getElementById('registrationForm').style.display = 'none';
+
+            // Fill receipt details
+            document.getElementById('receipt-name').textContent = userData.fullName;
+            document.getElementById('receipt-email').textContent = userData.email;
+            document.getElementById('receipt-phone').textContent = userData.phone;
+            document.getElementById('receipt-user-id').textContent = userId;
+            document.getElementById('receipt-amount').textContent = '₹' + (registrationFeeAmount / 100).toFixed(2);
+            document.getElementById('receipt-payment-id').textContent = response.razorpay_payment_id;
+            document.getElementById('receipt-date').textContent = new Date().toLocaleString();
+
+            // Show the receipt card
+            document.getElementById('receiptCard').style.display = 'block';
+            console.log("Receipt card displayed to user");
+
+            // Add event listeners for buttons
+            document.getElementById('downloadReceiptBtn').addEventListener('click', function () {
+                downloadReceipt(response, userId, userData);
+            });
+
+            document.getElementById('homeBtn').addEventListener('click', function () {
+                window.location.href = '/index.html';
+            });
+        }
+
+        // Function to download receipt as PDF or text
+        function downloadReceipt(response, userId, userData) {
+            // Create a text version of the receipt for now
+            const receiptText = `
+IMAXX TV Digital - Registration Receipt
+---------------------------------------
+Name: ${userData.fullName}
+Email: ${userData.email}
+Phone: ${userData.phone}
+Registration ID: ${userId}
+Amount Paid: ₹${(registrationFeeAmount / 100).toFixed(2)}
+Payment ID: ${response.razorpay_payment_id}
+Date: ${new Date().toLocaleString()}
+---------------------------------------
+Thank you for your registration!
+
+For any inquiries, please contact:
+IMAXX TV Digital
+Email: support@imaxxtv.com
+Phone: +91 XXXXXXXXXX
+            `;
+
+            // Create a blob and download it
+            const blob = new Blob([receiptText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `IMAXX_Registration_${userData.fullName}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Functions for saving data from other forms in index.html
+
+        // Function to save partner program form data
+        window.savePartnerFormData = async function (formData) {
+            try {
+                console.log("Saving partner program data to Firebase...");
+
+                // Create a structured object with the form data
+                const partnerData = {
+                    name: formData.name || '',
+                    email: formData.email || '',
+                    phone: formData.phone || '',
+                    company: formData.company || '',
+                    message: formData.message || '',
+                    partnerType: formData.partnerType || '',
+                    createdAt: serverTimestamp(),
+                    source: 'partner_program'
+                };
+
+                // Save to Firestore
+                const docRef = await addDoc(collection(db, "partner_inquiries"), partnerData);
+                console.log("Partner program data saved with ID:", docRef.id);
+                return docRef.id;
+            } catch (error) {
+                console.error("Error saving partner program data:", error);
+                throw error;
+            }
+        };
+
+        // Function to save free trial form data
+        window.saveFreeTrialData = async function (formData) {
+            try {
+                console.log("Saving free trial data to Firebase...");
+
+                // Create a structured object with the form data
+                const trialData = {
+                    name: formData.name || '',
+                    email: formData.email || '',
+                    phone: formData.phone || '',
+                    plan: formData.plan || '',
+                    createdAt: serverTimestamp(),
+                    source: 'free_trial'
+                };
+
+                // Save to Firestore
+                const docRef = await addDoc(collection(db, "trial_requests"), trialData);
+                console.log("Free trial data saved with ID:", docRef.id);
+                return docRef.id;
+            } catch (error) {
+                console.error("Error saving free trial data:", error);
+                throw error;
+            }
+        };
+
+        // Function to save contact form data
+        window.saveContactFormData = async function (formData) {
+            try {
+                console.log("Saving contact form data to Firebase...");
+
+                // Create a structured object with the form data
+                const contactData = {
+                    name: formData.name || '',
+                    email: formData.email || '',
+                    phone: formData.phone || '',
+                    subject: formData.subject || '',
+                    message: formData.message || '',
+                    createdAt: serverTimestamp(),
+                    source: 'contact_form'
+                };
+
+                // Save to Firestore
+                const docRef = await addDoc(collection(db, "contact_inquiries"), contactData);
+                console.log("Contact form data saved with ID:", docRef.id);
+                return docRef.id;
+            } catch (error) {
+                console.error("Error saving contact form data:", error);
+                throw error;
+            }
+        };
+    </script>
+
+    <!-- Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  color: aliceblue;
+}
+
+body {
+  background-color: #000;
+  color: #D1B261;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+
+}
+
+.stricks {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+}
+
+li {
+  list-style: none;
+  color: #D1B261;
+}
+
+p {
+  color: #D1B261;
+}
+
+.responsive-container-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.card-container {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  gap: 25px;
+  /* max-width: 1800px;  */
+}
+
+.card {
+  width: 22%;
+  height: 100%;
+  background-color: #000;
+  border: 1px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+}
+
+.card-upper-content {
+  margin-bottom: 20px;
+}
+
+.card-head {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.card-subhead {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #D1B261;
+}
+
+.price {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.card-lower-content {
+  margin-top: 20px;
+}
+
+.card-points {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #555;
+  margin: 10px 0;
+}
+
+.btns {
+  background-color: #D1B261;
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btns:hover {
+  background-color: #e0ac2b;
+}
+
+/* Responsive for mobile devices */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+  }
+
+
+  .card {
+    width: 100%;
+    max-width: 330px;
+  }
+}
+
+#h2ss {
+  margin-top: 60px;
+  font-size: 38px;
+  color: #D1B261;
+  /* margin-bottom: 20px; */
+  text-align: center;
+}
+
+/* Availability Section */
+#availability {
+  text-align: center;
+  /* margin-right: 50px; */
+}
+
+/* Centered Heading */
+#availability h2 {
+  margin-top: 40px;
+  font-size: 32px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Platform Row */
+.platforms {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+
+}
+
+/* Individual Platform Card */
+.platform {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px #D1B261;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+/* Hover Effect for Elevation */
+.platform:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 8px 20px #D1B261;
+}
+
+/* Icon Styling */
+.platform i {
+  font-size: 2.5rem;
+  color: #D1B261;
+  margin-bottom: 5px;
+}
+
+/* Platform Name */
+.platform span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* For screens less than 768px (tablets, phones) */
+@media (max-width: 768px) {
+  .platforms {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+  }
+}
+
+#mbcbtn {
+  z-index: 0;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+#mbcbtn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  text-shadow: 4px 4px 12px rgba(182, 159, 28, 1);
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+#mbcbtn:hover {
+  cursor: pointer;
+}

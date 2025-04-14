@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Events & Blogs</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="evevnt.css">
+    <style>
+        #mbcbtns {
+            z-index: 100;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1 class="page-title">Events & Blogs</h1>
+
+        <div class="content-wrapper">
+            <!-- <div class="section-title">Latest Events & Blogs</div> -->
+            <div class="card-container">
+                <!-- Event/BLOG Card 1 -->
+                <div class="event-card"
+                    onclick="openDetail('International Iconic Award', 'Imaxx tv | Awarded As Best Startup ‪@ImaxxTv‬ winner of 2023 best startup award.  ‪@ImaxxTv‬', 'https://www.youtube.com/embed/KQTKJykA_L4?si=4ks954fBUknGpCbG')">
+                    <img src="/Assests/films/image copy 17.png" alt="Event 1" class="event-image">
+                    <div class="card-info">
+                        <div class="card-title">International Iconic Award</div>
+                        <div class="card-summary">Imaxx tv | Awarded As Best Startup ‪@ImaxxTv‬</div>
+                    </div>
+                </div>
+                <!-- Event/BLOG Card 1 -->
+                <div class="event-card"
+                    onclick="openDetail('Building a Successful Production Company', 'A comprehensive digital content strategy is built on several interconnected components that production companies must master.', 'https://www.mediainfotainment.com/viewpoint/building-a-successful-production-company-creating-and-managing-engaging-visual-content-for-digital-platforms-nwid-2919.html')">
+                    <img src="/Assests/directors/image.png" alt="Event 1" class="event-image">
+                    <div class="card-info">
+                        <div class="card-title">Media Infotenment News</div>
+                        <div class="card-summary">Building a Successful Production Company Imaxx TV</div>
+                    </div>
+                </div>
+
+                <!-- Add more event/blog cards as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()"></span>
+            <h2 id="popup-title"></h2>
+            <iframe width="100%" height="315" id="iframes" src="" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <!-- <img id="popup-image" src="" alt="Event Image" class="popup-image"> -->
+            <p id="popup-description"></p>
+            <button class="btn-watch" onclick="closePopup()">Back</button>
+        </div>
+    </div>
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBacks()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+    <script>
+        let lastScrollTop = 0;
+
+        window.onscroll = function () {
+            let button = document.getElementById("mbcbtns");
+            let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Check if it's a mobile device (max-width: 768px)
+            if (window.innerWidth <= 768) {
+                if (currentScrollTop > lastScrollTop) {
+                    // User is scrolling down
+                    button.style.display = "block"; // Show the button
+                } else {
+                    // User is scrolling up
+                    button.style.display = "none"; // Hide the button
+                }
+            } else {
+                // On desktop, keep the button always visible
+                button.style.display = "block"; // Ensure it's always shown on desktop
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
+        };
+
+        function goBacks() {
+            window.history.back();
+        }
+    </script>
+
+    <script>
+        function openDetail(title, description, url) {
+            // Check if the URL is an external link
+            if (url.startsWith('http://') || url.startsWith('https://')) {
+                // Open external link in a new tab
+                window.open(url, '_blank');
+            } else {
+                // For internal content, open the modal popup
+                document.getElementById("popup-title").innerText = title;
+                document.getElementById("popup-description").innerText = description;
+                document.getElementById("iframes").src = url; // Use the URL for the iframe or image
+                document.getElementById("popup-modal").style.display = "block";
+            }
+        }
+
+        function closePopup() {
+            document.getElementById("popup-modal").style.display = "none";
+            document.getElementById("iframes").src = ''; // Reset iframe source
+        }
+    </script>
+
+    <!-- <script src="script.js"></script> -->
+</body>
+
+</html>

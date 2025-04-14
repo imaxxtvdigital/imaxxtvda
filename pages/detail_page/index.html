@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Content Details</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #mbcbtns {
+            z-index: 100;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="page">
+        <h1>Show Details</h1>
+
+        <div class="details-container">
+            <div class="detail-card">
+                <img id="show-image" src="default.jpg" alt="Show Image">
+                <h2 id="show-title">Show Title</h2>
+                <p class="short-description">Trending now. Don't miss out!</p>
+
+                <h3>Detailed Description</h3>
+                <p class="show-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum
+                    interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Mauris at ante a
+                    sapien consequat consectetur. Sed viverra varius nisl, non ullamcorper erat. Integer posuere eros ac
+                    ligula tincidunt aliquam. Praesent quis neque ac erat varius elementum.
+                </p>
+
+                <a href="#" class="btn-watch">Watch Now</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBacks()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <script>
+        // Get the URL parameters and populate the detail page
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title');
+        const description = params.get('description');
+        const imgSrc = params.get('imgSrc');
+
+        // Update the content dynamically
+        document.getElementById('show-title').textContent = title;
+        document.getElementById('show-description').textContent = description;
+
+        // Ensure correct image path without prefixing folder path again
+        document.getElementById('show-image').src = imgSrc ? imgSrc : 'default.jpg';
+    </script>
+
+    <script>
+        function goBacks() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMAXX TV - Subscription Plans</title>
+  <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="plans.css">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    #mbcbtns {
+      z-index: 100;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .btn-back {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 2px solid #D1B261;
+      color: #D1B261;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+    }
+
+    .btn-back:hover {
+      background-color: #D1B261;
+      color: black;
+      transform: scale(1.1);
+    }
+  </style>
+  <!-- Add back button script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Create back button if it doesn't exist
+      if (!document.getElementById('mbcbtns')) {
+        // Create back button element
+        const backButton = document.createElement('div');
+        backButton.id = 'mbcbtns';
+        backButton.style.cssText = 'z-index: 9999 !important; display: block !important; position: fixed !important; bottom: 20px !important; left: 20px !important; visibility: visible !important;';
+
+        backButton.innerHTML = `
+          <button class="btn-back" 
+            style="display: flex !important; justify-content: center !important; align-items: center !important; background-color: rgba(0, 0, 0, 0.7) !important; border: 2px solid #D1B261 !important; color: #D1B261 !important; border-radius: 50% !important; width: 50px !important; height: 50px !important; visibility: visible !important; font-size: 24px !important; cursor: pointer !important;"
+            onclick="window.history.back()">
+            <i class="fas fa-arrow-left"
+              style="display: inline-block !important; color: #D1B261 !important; font-size: 20px !important; visibility: visible !important;"></i>
+            <span style="display: none !important;">←</span>
+          </button>
+        `;
+        document.body.appendChild(backButton);
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div class="pricing_9">
+    <!-- <br><br><br><br> -->
+    <h2 id="h2ss">Our Plans</h2>
+    <div class="responsive-container-block big-container">
+      <div class="responsive-container-block container">
+        <div class="responsive-container-block card-container">
+          <div class="card card-selected">
+            <div class="card-upper-content">
+              <p class="text-blk card-head">Mobile</p>
+              <div class="divider"></div>
+            </div>
+            <div class="card-lower-content">
+              <ul class="monthly-plan">
+                <li class="text-blk card-points">Watch on 1 supported device at a time</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Watch in 480p (SD)</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Download on 1 supported device at a time</li>
+                <div class="divider"></div>
+              </ul>
+              <p class="text-blk card-subhead">Monthly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹29</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Quarterly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹69</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Half Yearly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹169</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Yearly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹399</p>
+              </span>
+              <button class="btns" type="button"
+                onclick="window.open('https://imaxxtv.com', '_blank')">Continue</button>
+            </div>
+          </div>
+
+          <div class="card card-selected">
+            <div class="card-upper-content">
+              <p class="text-blk card-head">Basic</p>
+              <div class="divider"></div>
+            </div>
+            <div class="card-lower-content">
+              <ul class="monthly-plan">
+                <li class="text-blk card-points">Watch on 1 supported device at a time</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Watch in 720p (HD)</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Download on 1 supported device at a time</li>
+                <div class="divider"></div>
+              </ul>
+              <p class="text-blk card-subhead">Monthly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹49</p>
+
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Quarterly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹129</p>
+                <p style="font-size: 16px; color: white;">
+                  10% Discount</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Half Yearly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹299</p>
+                <p style="font-size: 16px;color: white;">
+                  20% Discount</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Yearly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹499</p>
+                <p style="font-size: 16px;color: white;">
+                  25% Discount</p>
+              </span>
+              <button class="btns" type="button"
+                onclick="window.open('https://imaxxtv.com', '_blank')">Continue</button>
+            </div>
+          </div>
+
+          <div class="card card-selected">
+            <div class="card-upper-content">
+              <p class="text-blk card-head">Standard</p>
+              <div class="divider"></div>
+            </div>
+            <div class="card-lower-content">
+              <ul class="monthly-plan">
+                <li class="text-blk card-points">Watch on 2 supported devices at a time</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Watch in 1080p (FHD)</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Download on 2 supported devices at a time</li>
+                <div class="divider"></div>
+              </ul>
+              <p class="text-blk card-subhead">Monthly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹99</p>
+
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Quarterly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹249</p>
+                <p style="font-size: 16px; color: white;">
+                  10% Discount</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Half Yearly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹449</p>
+                <p style="font-size: 16px;color: white;">
+                  20% Discount</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Yearly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹799</p>
+                <p style="font-size: 16px;color: white;">
+                  25% Discount</p>
+              </span>
+              <button class="btns" type="button"
+                onclick="window.open('https://imaxxtv.com', '_blank')">Continue</button>
+            </div>
+          </div>
+
+          <div class="card card-selected">
+            <div class="card-upper-content">
+              <p class="text-blk card-head">Preminum</p>
+              <div class="divider"></div>
+            </div>
+            <div class="card-lower-content">
+              <ul class="monthly-plan">
+                <li class="text-blk card-points">Unlimited ad-free</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Watch on 2 Mobile devices and 2 TV's at a time</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Watch in 4K (Ultra HD) + HDR + Dolby</li>
+                <!-- <div class="divider"></div> -->
+                <li class="text-blk card-points">Download on 6 supported devices at a time</li>
+                <div class="divider"></div>
+              </ul>
+              <p class="text-blk card-subhead">Monthly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹149</p>
+
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Quarterly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹399</p>
+                <p style="font-size: 16px; color: white;">
+                  10% Discount</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Half Yearly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹699</p>
+                <p style="font-size: 16px;color: white;">
+                  20% Discount</p>
+              </span>
+              <div class="divider"></div>
+              <p class="text-blk card-subhead">Yearly</p>
+              <span class="price">
+                <p class="text-blk rupees">₹1099</p>
+                <p style="font-size: 16px;color: white;">
+                  25% Discount</p>
+              </span>
+              <!-- <div class="divider"></div> -->
+              <button class="btns" type="button"
+                onclick="window.open('https://imaxxtv.com', '_blank')">Continue</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <section id="availability">
+      <h2>Download Now</h2>
+      <div class="platforms">
+        <a href="https://imaxxtv.com">
+          <div class="platform">
+            <i class="fas fa-globe"></i>
+            <span>Web</span>
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.imaxxtv.app&hl=en_IN&pli=1">
+          <div class="platform">
+            <i class="fab fa-android"></i>
+            <span>Android</span>
+          </div>
+        </a>
+        <a href="">
+          <div class="platform">
+            <i class="fab fa-apple"></i>
+            <span>iOS</span>
+          </div>
+        </a>
+        <a href="">
+          <div class="platform">
+            <i class="fas fa-tv"></i>
+            <span>TV</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+  <div id="mbcbtns">
+    <button class="btn-back" onclick="goBacks()"
+      style="display: flex !important; justify-content: center !important; align-items: center !important; background-color: rgba(0, 0, 0, 0.7) !important; border: 2px solid #D1B261 !important; color: #D1B261 !important; border-radius: 50% !important; width: 50px !important; height: 50px !important; visibility: visible !important; font-size: 24px !important;">
+      <i class="fas fa-arrow-left"
+        style="display: inline-block !important; color: #D1B261 !important; font-size: 20px !important; visibility: visible !important;"></i>
+    </button>
+  </div>
+  <script>
+    let lastScrollTop = 0;
+
+    window.onscroll = function () {
+      let button = document.getElementById("mbcbtns");
+      let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Check if it's a mobile device (max-width: 768px)
+      if (window.innerWidth <= 768) {
+        if (currentScrollTop > lastScrollTop) {
+          // User is scrolling down
+          button.style.display = "block"; // Show the button
+        } else {
+          // User is scrolling up
+          button.style.display = "none"; // Hide the button
+        }
+      } else {
+        // On desktop, keep the button always visible
+        button.style.display = "block"; // Ensure it's always shown on desktop
+      }
+
+      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
+    };
+
+    function goBacks() {
+      window.history.back();
+    }
+  </script>
+
+  <script src="planss.js"></script>
+</body>
+
+</html>

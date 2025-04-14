@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Reality Show Contest</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reality_show.css">
+    <style>
+        #mbcbtns {
+            z-index: 999;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: block !important;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1 class="page-title">Reality Shows</h1>
+
+        <div class="content-wrapper">
+            <div class="section-title"></div>
+            <div class="card-container">
+                <!-- Event/BLOG Card 1 -->
+                <div class="event-card" onclick="openExternalPage()">
+                    <img src="/Assests/directors/LAUGHTER 3.png" alt="Event 1" class="event-image">
+                    <div class="card-info">
+                        <div class="card-title">Stand Up Comedy</div>
+                        <div class="card-summary">Laftet Aaakhada : India's First Stand Up Comedian Hunt On Digital
+                            Platform</div>
+                        <button class="btn-watchs" onclick="openExternalPage()">Register Now</button>
+                    </div>
+                </div>
+                <!-- Event/BLOG Card 1 -->
+                <!-- <div class="event-card"
+                    onclick="openDetail('Home Chef', 'This is a detailed description of Event 1. Learn about the event details, speakers, timings, etc.', '/Assests/images/Design 2.png')">
+                    <img src="/Assests/images/Design 2.png" alt="Event 1" class="event-image">
+                    <div class="card-info">
+                        <div class="card-title">Home Chef</div>
+                        <div class="card-summary">Cooking Show</div>
+                        <button class="btn-watchs" onclick="openExternalPage()">Register Now</button>
+                    </div>
+                </div> -->
+                <!-- Event/BLOG Card 1 -->
+                <!-- <div class="event-card"
+                    onclick="openDetail('Event 1', 'This is a detailed description of Event 1. Learn about the event details, speakers, timings, etc.', '/Assests/photo_2025-02-17 19.00.37.jpeg')">
+                    <img src="/Assests/photo_2025-02-17 19.00.37.jpeg" alt="Event 1" class="event-image">
+                    <div class="card-info">
+                        <div class="card-title">Event 1</div>
+                        <div class="card-summary">Short description of Event 1.</div>
+                        <button onclick="openNewPage()">Participate Now</button>
+                    </div>
+                </div> -->
+
+
+                <!-- Add more event/blog cards as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">BACK</span>
+            <h2 id="popup-title"></h2>
+            <img id="popup-image" src="" alt="Event Image" class="popup-image" onclick="openExternalPage()">
+            <p id="popup-description"></p>
+        </div>
+
+    </div>
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBacks()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+    <script>
+        function goBacks() {
+            window.history.back();
+        }
+
+        // Ensure button is always visible, no matter what
+        document.addEventListener('DOMContentLoaded', function () {
+            const button = document.getElementById("mbcbtns");
+            if (button) {
+                button.style.display = "block";
+            }
+        });
+    </script>
+    <script src="reality_show.js"></script>
+</body>
+
+</html>

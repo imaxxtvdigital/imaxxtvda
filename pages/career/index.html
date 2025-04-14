@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAXX TV - Career Opportunities</title>
+    <link rel="shortcut icon" href="/Assests/images/imaxx-icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file -->
+    <style>
+        #mbcbtns {
+            z-index: 100;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .btn-back {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #D1B261;
+            color: #D1B261;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(209, 178, 97, 0.5);
+        }
+
+        .btn-back:hover {
+            background-color: #D1B261;
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Career Form</h1>
+    <div class="partner-form">
+        <form id="whatsappForm" onsubmit="sendToWhatsApp(event)" enctype="multipart/form-data"
+            action="your-server-endpoint" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Full Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+
+            <label for="designation">Position Appliying For:</label>
+            <select id="designation" name="designation" required>
+                <option value="">Select a designation</option>
+                <option value="Software Engineer">Content QC Specialist/SNP</option>
+                <option value="Project Manager">Script Writing</option>
+                <option value="UI/UX Designer">Creative Head</option>
+                <option value="Data Scientist">Associate Creative</option>
+                <!-- <option value="Marketing Specialist">Creative Director</option> -->
+                <option value="Marketing Specialist">Content Head</option>
+                <option value="Marketing Specialist">Back-End/Receptionist,Front Desk, Admin, HR</option>
+                <option value="Marketing Specialist">Technical Head</option>
+                <option value="Marketing Specialist">Graphic Designer</option>
+                <option value="Marketing Specialist">3D Illustration</option>
+                <option value="Marketing Specialist">Video Editor</option>
+            </select>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <div id="mbcbtns">
+        <button class="btn-back" onclick="goBacks()"
+            style="display: flex !important; justify-content: center !important; align-items: center !important; background-color: rgba(0, 0, 0, 0.7) !important; border: 2px solid #D1B261 !important; color: #D1B261 !important; border-radius: 50% !important; width: 50px !important; height: 50px !important; visibility: visible !important; font-size: 24px !important;">
+            <i class="fas fa-arrow-left"
+                style="display: inline-block !important; color: #D1B261 !important; font-size: 20px !important; visibility: visible !important;"></i>
+        </button>
+    </div>
+
+    <script>
+        let lastScrollTop = 0;
+
+        window.onscroll = function () {
+            let button = document.getElementById("mbcbtns");
+            let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Check if it's a mobile device (max-width: 768px)
+            if (window.innerWidth <= 768) {
+                if (currentScrollTop > lastScrollTop) {
+                    // User is scrolling down
+                    button.style.display = "block"; // Show the button
+                } else {
+                    // User is scrolling up
+                    button.style.display = "none"; // Hide the button
+                }
+            } else {
+                // On desktop, keep the button always visible
+                button.style.display = "block"; // Ensure it's always shown on desktop
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
+        };
+
+        function goBacks() {
+            window.history.back();
+        }
+    </script>
+
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const designation = document.getElementById("designation").value;
+            const message = document.getElementById("message").value;
+
+            const whatsappNumber = "+918424805564"; // Add your WhatsApp number here in international format (without +)
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=Hello,%20my%20name%20is%20${encodeURIComponent(name)}.%20I%20would%20like%20to%20apply%20for%20the%20position%20of%20${encodeURIComponent(designation)}.%0A%0AHere%20are%20my%20details:%0A%0AName:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0AEmail:%20${encodeURIComponent(email)}%0AFull%20Address:%20${encodeURIComponent(address)}%0AMessage:%20${encodeURIComponent(message)}.%0A%0AThank%20you%20for%20your%20consideration.%20I%20look%20forward%20to%20your%20reply.`;
+
+            window.open(whatsappURL);
+        }
+    </script>
+</body>
+
+</html>
