@@ -497,7 +497,7 @@ select:focus {
     font-size: 30px;
     text-shadow: 2px 2px 8px #D1B261;
     color: #ffffff;
-    margin: 10px 0 20px;
+    margin: 10px 0 10px;
 }
 
 #page p {
