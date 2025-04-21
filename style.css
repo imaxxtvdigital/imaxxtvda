@@ -460,7 +460,11 @@ select:focus {
 
 #page {
   position: absolute;
+<<<<<<< HEAD
   top: 19%;
+=======
+  top: 12%;
+>>>>>>> 11ac6f51e313eeb4ad8ef6d71135fce592005764
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
@@ -472,7 +476,11 @@ select:focus {
 #page h1,
 #page h2,
 #page p {
+<<<<<<< HEAD
   margin-bottom: 5px;
+=======
+  margin-top: 10px;
+>>>>>>> 11ac6f51e313eeb4ad8ef6d71135fce592005764
 }
 
 #page h1 {
@@ -480,7 +488,11 @@ select:focus {
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-size: 80px;
+=======
+  font-size: 90px;
+>>>>>>> 11ac6f51e313eeb4ad8ef6d71135fce592005764
   text-shadow: 2px 2px 8px #d1b261;
   font-weight: 900;
   color: #e8e8e8;
@@ -494,12 +506,20 @@ select:focus {
   font-size: 30px;
   text-shadow: 2px 2px 8px #d1b261;
   color: #ffffff;
+<<<<<<< HEAD
   /* margin: 10px 0 20px; */
+=======
+  margin: 10px 0 10px;
+>>>>>>> 11ac6f51e313eeb4ad8ef6d71135fce592005764
 }
 
 #page p {
   /* font-family: "Anton", serif; */
+<<<<<<< HEAD
   font-size: 30px;
+=======
+  font-size: 34px;
+>>>>>>> 11ac6f51e313eeb4ad8ef6d71135fce592005764
   font-weight: bold;
   color: #d1b261;
 }
@@ -509,7 +529,11 @@ select:focus {
   justify-content: center;
   align-items: center;
   gap: 10px;
+<<<<<<< HEAD
   margin-bottom: 10px;
+=======
+  /* margin-top: 20px; */
+>>>>>>> 11ac6f51e313eeb4ad8ef6d71135fce592005764
 }
 
 /* Message Button inside Input */
@@ -519,7 +543,11 @@ select:focus {
   align-items: center;
   position: relative;
   width: 300px;
+<<<<<<< HEAD
   margin: auto;
+=======
+  margin: 0 auto;
+>>>>>>> 11ac6f51e313eeb4ad8ef6d71135fce592005764
 }
 
 .footer-message input {
@@ -2562,8 +2590,15 @@ select:focus {
     display: block;
   }
 
+<<<<<<< HEAD
   #menu.show {
     display: flex;
     gap: 15px;
   }
+=======
+    #menu.show {
+        display: flex;
+        gap: 15px;
+    }
+>>>>>>> 11ac6f51e313eeb4ad8ef6d71135fce592005764
 }
