@@ -218,7 +218,7 @@
 
                                 color: '#ffffff',
                                 callback: function (value) {
-                                    return (value / 100000) + 'L';
+                                    return (value / 100000) + 'k';
                                 }
                             },
                             grid: {
@@ -252,7 +252,7 @@
                     labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
                     datasets: [{
                         label: 'Monthly Revenue (₹ millions)',
-                        data: [4, 6, 8, 12, 18, 25, 35],
+                        data: [0.2, 0.6, 0.8, 1.2, 1.8, 2.5, 4.0], // in millions
                         backgroundColor: '#D1B261',
                         borderWidth: 0,
                         borderRadius: 5
@@ -263,26 +263,19 @@
                     maintainAspectRatio: false,
                     scales: {
                         y: {
-                            min: 2,
-                            beginAtZero: true,
+                            min: 0.2,
+                            max: 4.0,
                             grid: {
                                 color: 'rgba(255, 255, 255, 0.1)'
                             },
                             ticks: {
                                 color: '#ffffff',
-                                maxTicksLimit: 5,
+                                stepSize: 0.5,
                                 callback: function (value) {
-                                    const scaled = value * 1000000; // scale from millions
-                                    if (scaled >= 1000000) {
-                                        return (scaled / 1000000) + 'L';
-                                    } else {
-                                        return (scaled / 1000) + 'k';
-                                    }
+                                    return value + 'M'; // show in millions directly
                                 }
                             }
-
-                        }
-                        ,
+                        },
                         x: {
                             grid: {
                                 color: 'rgba(255, 255, 255, 0.1)'
@@ -301,6 +294,7 @@
                     }
                 }
             });
+
 
             // Content Distribution Pie Chart
             const contentCtx = document.getElementById('contentPieChart').getContext('2d');
