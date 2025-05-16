@@ -122,56 +122,57 @@
             <div class="container">
                 <h2 class="section-title">Our Growth in Numbers</h2>
 
-                <div class="charts-gri                    <div class=" chart-container">
-                    <h3>Our User Growth in Millions</h3>
-                    <canvas id="userGrowthChart"></canvas>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>Our User Growth in Millions</h3>
+                        <canvas id="userGrowthChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>Our Revenue Growth in Millions</h3>
+                        <canvas id="revenueGrowthChart"></canvas>
+                    </div>
                 </div>
 
-                <div class="chart-container">
-                    <h3>Our Revenue Growth in Millions</h3>
-                    <canvas id="revenueGrowthChart"></canvas>
-                </div>
-            </div>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>Content Distribution</h3>
+                        <canvas id="contentPieChart"></canvas>
+                    </div>
 
-            <div class="charts-grid">
-                <div class="chart-container">
-                    <h3>Content Distribution</h3>
-                    <canvas id="contentPieChart"></canvas>
-                </div>
-
-                <div class="chart-container">
-                    <h3>Subscriber Categories</h3>
-                    <canvas id="subscriberPieChart"></canvas>
-                </div>
-            </div>
-    </div>
-    </section>
-
-    <!-- Future Vision Section -->
-    <section class="vision-section">
-        <div class="container">
-            <h2 class="section-title">What's Next?</h2>
-
-            <div class="vision-content">
-                <p>We're investing $3 to $5 million to bring you even more world-class entertainment. Because at
-                    IMAXX,
-                    we believe:</p>
-                <blockquote>
-                    <p>Great stories should be for everyone.<br>
-                        Great entertainment at pocket friendly prices.</p>
-                </blockquote>
-            </div>
-
-            <div class="cta-container">
-                <h3>Join India's Entertainment Revolution</h3>
-                <div class="cta-buttons">
-                    <a href="https://imaxxtv.com" class="btn-gold" target="_blank">Watch Now</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.imaxxtv.app&hl=en_IN&pli=1"
-                        class="btn-gold" target="_blank">Download App</a>
+                    <div class="chart-container">
+                        <h3>Subscriber Categories</h3>
+                        <canvas id="subscriberPieChart"></canvas>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Future Vision Section -->
+        <section class="vision-section">
+            <div class="container">
+                <h2 class="section-title">What's Next?</h2>
+
+                <div class="vision-content">
+                    <p>We're investing $3 to $5 million to bring you even more world-class entertainment. Because at
+                        IMAXX,
+                        we believe:</p>
+                    <blockquote>
+                        <p>Great stories should be for everyone.<br>
+                            Great entertainment at pocket friendly prices.</p>
+                    </blockquote>
+                </div>
+
+                <div class="cta-container">
+                    <h3>Join India's Entertainment Revolution</h3>
+                    <div class="cta-buttons">
+                        <a href="https://imaxxtv.com" class="btn-gold" target="_blank">Watch Now</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.imaxxtv.app&hl=en_IN&pli=1"
+                            class="btn-gold" target="_blank">Download App</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Back Button -->
@@ -194,7 +195,7 @@
             const userGrowthChart = new Chart(userCtx, {
                 type: 'line',
                 data: {
-                    labels: ['2023', '2023', '2023', '2023', '2024', '2024', '2024'],
+                    labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
                     datasets: [{
                         label: 'Monthly Active Users',
                         data: [1000, 5000, 12000, 25000, 42000, 68000, 95000],
@@ -242,7 +243,7 @@
             const revenueGrowthChart = new Chart(revenueCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['2023', '2023', '2023', '2023', '2024', '2024', '2024'],
+                    labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
                     datasets: [{
                         label: 'Monthly Revenue (₹ Lakhs)',
                         data: [0.5, 2, 5, 12, 18, 25, 35],
