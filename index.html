@@ -79,6 +79,37 @@
                 <div class="carousel">
                     <div class="carousel-slides">
 
+                        <!-- bba start -->
+                        <div id="notification"
+                            onclick="window.open('https://www.youtube.com/watch?v=cT_U4iLoENY', '_blank')"
+                            style="display: none; position: fixed; top: 270px; left: 20px; background-color: rgba(255,255,255,0.95); border: 1px solid #ccc; border-radius: 8px; padding: 10px; align-items: center; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 1000; transition: opacity 0.5s ease; opacity: 0; flex-direction: row;">
+                            <img src="/Assests/images/WhatsApp Image 2025-06-02 at 18.21.08_091a9479.jpg" alt="bba-img"
+                                style="width: 80px; height: 70px; object-fit: cover; margin-right: 10px; border-radius: 4px;">
+                            <h1 style="font-size: 14px; margin: 0; color: black;">Band Baja Aafat Teaser Song</h1>
+                        </div>
+
+                        <script>
+                            function showNotification() {
+                                const notif = document.getElementById("notification");
+                                notif.style.display = "flex";
+                                notif.style.opacity = "1";
+
+                                // Hide after 3 seconds
+                                setTimeout(() => {
+                                    notif.style.opacity = "0";
+                                    setTimeout(() => {
+                                        notif.style.display = "none";
+                                    }, 500); // Wait for fade-out
+                                }, 5000);
+                            }
+
+                            document.addEventListener("DOMContentLoaded", () => {
+                                showNotification(); // Show once on page load
+                            });
+                        </script>
+
+
+
                         <div class=" carousel-slide">
                             <div class=" carousel-image">
                                 <img src="/Assests/web 1111.png" alt="">
