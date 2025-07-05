@@ -22,12 +22,15 @@
 
         img {
             margin-top: 30px;
-            margin-bottom: -30px;
+            margin-bottom: 0;
             width: 90%;
             max-width: 1040px;
-            height: 150px;
-            object-fit: cover;
+            height: auto;
+            /* Let image keep natural height */
+            object-fit: contain;
+            /* Keep full image visible */
         }
+
 
         h2 {
             color: rgb(255, 255, 255);
@@ -61,7 +64,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('/Assests/directors/photo_2025-03-06\ 15.18.52.jpeg');
+            /* background-image: url('/Assests/directors/photo_2025-03-06\ 15.18.52.jpeg'); */
             background-size: cover;
             background-position: center;
             opacity: 0.15;
@@ -529,7 +532,8 @@
 </head>
 
 <body>
-    <img src="/Assests/directors/photo_2025-03-06 15.18.48.jpeg" alt="Top Image">
+
+    <img src="/Assests/images/unblurimageai_laughter.PNG" alt="Top Image">
     <form id="registrationForm">
         <h2>Registration Form</h2>
         <p>This space is where you can share information on the section, In capital.</p>
