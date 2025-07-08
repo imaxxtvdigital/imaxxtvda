@@ -16,8 +16,8 @@ body {
 }
 
 .main-container {
-  text-align: center;
-  padding-top: 40px;
+  text-align: start;
+  padding-top: 10px;
 }
 
 .page-title {
@@ -40,9 +40,11 @@ body {
 
 .card-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   flex-wrap: wrap;
   gap: 20px;
+  width: 100vw;
+  height: 100vh;
 }
 
 .event-card {

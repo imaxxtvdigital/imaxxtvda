@@ -38,13 +38,48 @@
             color: black;
             transform: scale(1.1);
         }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-div {
+            background-color: black;
+            color: white;
+            flex: 1;
+            /* Takes all remaining space */
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: 150px;
+        }
+
+        .title {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 1.2em;
+            max-width: 600px;
+            line-height: 1.5;
+
+
+        }
     </style>
 </head>
 
 <body>
 
     <div class="main-container">
-        <h1 class="page-title">Reality Shows</h1>
 
         <div class="content-wrapper">
             <div class="section-title"></div>
@@ -58,6 +93,18 @@
                             Platform</div>
                         <button class="btn-watchs" onclick="openExternalPage()">Register Now</button>
                     </div>
+                </div>
+
+                <div class="content-div">
+                    <h1 class="title">Laughter Akhada</h1>
+                    <p class="description">•Laughter Akhada is a desi style comedic showdown where aspiring comedians
+                        from all over the country enter the Akhada (arena) to battle it out with humour, wit and crowd
+                        appeal.
+                        •This show is where comedians become warriors, jokes become weapons and laughter becomes the
+                        ultimate treasure.
+                        •Each episode transforms into a verbal combat one where comedians clash with punchlines, roast
+                        each other, challenge themes and aim to win the audience's heart and become the Laughter
+                        Akhada champion.</p>
                 </div>
                 <!-- Event/BLOG Card 1 -->
                 <!-- <div class="event-card"
