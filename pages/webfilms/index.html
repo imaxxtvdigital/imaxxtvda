@@ -94,13 +94,15 @@
                 </div>
             </section>
 
-            <section id="films" class="show-section">
+            <!-- Content will be loaded from Firebase -->
+            <!-- <section id="films" class="show-section">
                 <h2>Films</h2>
                 <div class="show-cards" id="films-container">
-                    <!-- Content will be loaded from Firebase -->
                     <div class="loader"></div>
                 </div>
-            </section>
+            </section> -->
+
+
         </div>
         <!-- to be enable in future just rename it will start working. corroect name -id="media-popup" class="popup" -->
         <!-- Popup for media details -->
@@ -181,8 +183,8 @@
                     loadContent('trending', 'trending-container'),
                     loadContent('coming-soon', 'coming-soon-container'),
                     loadContent('series', 'series-container'),
-                    loadContent('shows', 'shows-container'),
-                    loadContent('films', 'films-container')
+                    loadContent('shows', 'shows-container')
+                    //   loadContent('films', 'films-container')
                 ]);
 
                 // Show trending section by default
