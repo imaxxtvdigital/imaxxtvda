@@ -60,7 +60,7 @@ function handlePopState(event) {
     if (popup && popup.style.display === 'flex') {
         closePopup();
 
-        // Prevent default back behavior
+        // Prevent default back behaviors
         event.preventDefault();
 
         // Push state again so we don't leave the page
