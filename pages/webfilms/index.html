@@ -53,11 +53,10 @@
 
         <!-- Tabs for Sections -->
         <div class="tabs">
-           <!-- <button class="tab-button" onclick="showSection('trendins')">Trending</button> -->
             <button class="tab-button" onclick="showSection('coming-soon')">Coming Soon</button>
             <button class="tab-button" onclick="showSection('series')">Series</button>
-           <!-- <button class="tab-button" onclick="showSection('showss')">Shows</button>
-            <button class="tab-button" onclick="showSection('films')">Films</button> -->
+            <button class="tab-button" onclick="showSection('trendins')">Trending</button>
+            <button class="tab-button" onclick="showSection('films')">Films</button>
         </div>
 
         <!-- Shows Section -->
@@ -67,7 +66,7 @@
     <div class="show-cards" id="trending-container">
         <div class="loader"></div>
     </div>
-</section> 
+</section>
 
 
             <section id="coming-soon" class="show-section">
@@ -86,15 +85,7 @@
                 </div>
             </section>
 
-            <section id="showss" class="show-section">
-                <h2>Shows</h2>
-                <div class="show-cards" id="shows-container">
-                    <!-- Content will be loaded from Firebase -->
-                    <div class="loader"></div>
-                </div>
-            </section>
-
-
+            <!-- Films section -->
             <section id="films" class="show-section">
                 <h2>Films</h2>
                 <div class="show-cards" id="films-container">
@@ -181,15 +172,14 @@
 
                 // Load content for each category
                 await Promise.all([
-                    loadContent('trending', 'trending-container'),
                     loadContent('coming-soon', 'coming-soon-container'),
                     loadContent('series', 'series-container'),
-                    loadContent('shows', 'shows-container'),
+                    loadContent('trending', 'trending-container'),
                     loadContent('films', 'films-container')
                 ]);
 
-                // Show trending section by default
-                showSection('trendins');
+                // Show Series section by default
+                showSection('series');
             } catch (error) {
                 console.error("Error loading content:", error);
                 displayErrorMessage(error.message);
@@ -368,8 +358,10 @@
         // Function to display error message
         function displayErrorMessage(errorMessage = '') {
             const containers = [
-                'trending-container', 'coming-soon-container',
-                'series-container', 'shows-container', 'films-container'
+                'trending-container',
+                'coming-soon-container',
+                'series-container',
+                'films-container'
             ];
 
 

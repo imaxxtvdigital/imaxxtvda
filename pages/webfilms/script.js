@@ -96,9 +96,9 @@ function goBacks() {
     window.history.back();
 }
 
-// Show Coming Soon section by default on page load
+// Show Series section by default on page load
 document.addEventListener('DOMContentLoaded', function () {
-    showSection('coming-soon');
+    showSection('series');
 
     // Add event listener for watch now button
     document.getElementById('watch-now-btn').addEventListener('click', function () {
@@ -676,9 +676,9 @@ document.addEventListener('keydown', (event) => {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-    // Show Coming Soon section by default
-    showSection('coming-soon');
+    // Show Series section by default
+    showSection('series');
 
-    // Add active class to first tab (Coming Soon)
+    // Add active class to Series tab
     document.querySelector('.tab-button').classList.add('active');
 });
