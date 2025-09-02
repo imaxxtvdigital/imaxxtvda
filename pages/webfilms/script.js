@@ -96,9 +96,9 @@ function goBacks() {
     window.history.back();
 }
 
-// Show trending section by default on page load
+// Show Coming Soon section by default on page load
 document.addEventListener('DOMContentLoaded', function () {
-    showSection('trendins');
+    showSection('coming-soon');
 
     // Add event listener for watch now button
     document.getElementById('watch-now-btn').addEventListener('click', function () {
@@ -676,9 +676,9 @@ document.addEventListener('keydown', (event) => {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-    // Show trending section by default
-    showSection('trendins');
+    // Show Coming Soon section by default
+    showSection('coming-soon');
 
-    // Add active class to trending tab
+    // Add active class to first tab (Coming Soon)
     document.querySelector('.tab-button').classList.add('active');
 });
