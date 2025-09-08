@@ -45,7 +45,7 @@ p {
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   /* flex-wrap: wrap; */
   gap: 25px;
   /* max-width: 1800px;  */
@@ -53,14 +53,14 @@ p {
 
 .card {
   width: 22%;
-  height: 100%;
   background-color: #000;
   border: 1px solid white;
   border-radius: 10px;
   overflow: hidden;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-
+  display: flex;
+  flex-direction: column;
 }
 
 .card-upper-content {
@@ -85,6 +85,9 @@ p {
 
 .card-lower-content {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .card-points {
@@ -106,6 +109,8 @@ p {
   padding: 12px 25px;
   border-radius: 8px;
   cursor: pointer;
+  margin-top: auto;
+  align-self: center;
 }
 
 .btns:hover {
