@@ -57,6 +57,7 @@
             <button class="tab-button" onclick="showSection('series')">Series</button>
             <button class="tab-button" onclick="showSection('trendins')">Trending</button>
             <button class="tab-button" onclick="showSection('films')">Films</button>
+            <button class="tab-button" onclick="showSection('shows')">Shows</button>
         </div>
 
         <!-- Shows Section -->
@@ -89,6 +90,15 @@
             <section id="films" class="show-section">
                 <h2>Films</h2>
                 <div class="show-cards" id="films-container">
+                    <!-- Content will be loaded from Firebase -->
+                    <div class="loader"></div>
+                </div>
+            </section>
+
+            <!-- Shows section -->
+            <section id="shows" class="show-section">
+                <h2>Shows</h2>
+                <div class="show-cards" id="shows-container">
                     <!-- Content will be loaded from Firebase -->
                     <div class="loader"></div>
                 </div>
@@ -175,7 +185,8 @@
                     loadContent('coming-soon', 'coming-soon-container'),
                     loadContent('series', 'series-container'),
                     loadContent('trending', 'trending-container'),
-                    loadContent('films', 'films-container')
+                    loadContent('films', 'films-container'),
+                    loadContent('shows', 'shows-container')
                 ]);
 
                 // Show Series section by default
@@ -361,7 +372,8 @@
                 'trending-container',
                 'coming-soon-container',
                 'series-container',
-                'films-container'
+                'films-container',
+                'shows-container'
             ];
 
 
