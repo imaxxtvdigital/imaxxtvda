@@ -118,6 +118,50 @@
         }
     </script>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
+            authDomain: "imaxxtv-1a82f.firebaseapp.com",
+            projectId: "imaxxtv-1a82f",
+            storageBucket: "imaxxtv-1a82f.firebasestorage.app",
+            messagingSenderId: "983969718785",
+            appId: "1:983969718785:web:9d0d4e50b7dc12b34d4951",
+            measurementId: "G-Y3CZM5TRXL"
+        };
+
+        let app;
+        let db;
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            console.log("Firebase initialized for career page");
+        } catch (err) {
+            console.error("Firebase init error (career):", err);
+        }
+
+        // Expose a helper on window to be used from non-module script
+        window.saveApplicantToFirestore = async function saveApplicantToFirestore(applicantData) {
+            if (!db) {
+                console.error("Firestore not initialized; cannot save applicant");
+                return;
+            }
+            try {
+                const payload = {
+                    ...applicantData,
+                    submission_date: new Date().toISOString(),
+                    timestamp: serverTimestamp()
+                };
+                const ref = await addDoc(collection(db, "applicants"), payload);
+                console.log("Applicant saved with id:", ref.id);
+            } catch (error) {
+                console.error("Failed to save applicant:", error);
+            }
+        }
+    </script>
+
     <script>
         function sendToWhatsApp(event) {
             event.preventDefault();
@@ -129,7 +173,19 @@
             const designation = document.getElementById("designation").value;
             const message = document.getElementById("message").value;
 
-            const whatsappNumber = "+918424805564"; // Add your WhatsApp number here in international format (without +)
+            if (window.saveApplicantToFirestore) {
+                window.saveApplicantToFirestore({
+                    name: name,
+                    contact: phone,
+                    email: email,
+                    address: address,
+                    designation: designation,
+                    message: message,
+                    reason: "career_application"
+                });
+            }
+
+            const whatsappNumber = "+918630198665"; // Add your WhatsApp number here in international format (without +)
             const whatsappURL = `https://wa.me/${whatsappNumber}?text=Hello,%20my%20name%20is%20${encodeURIComponent(name)}.%20I%20would%20like%20to%20apply%20for%20the%20position%20of%20${encodeURIComponent(designation)}.%0A%0AHere%20are%20my%20details:%0A%0AName:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0AEmail:%20${encodeURIComponent(email)}%0AFull%20Address:%20${encodeURIComponent(address)}%0AMessage:%20${encodeURIComponent(message)}.%0A%0AThank%20you%20for%20your%20consideration.%20I%20look%20forward%20to%20your%20reply.`;
 
             window.open(whatsappURL);
