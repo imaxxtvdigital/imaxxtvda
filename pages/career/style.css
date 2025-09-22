@@ -12,6 +12,24 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-weight: normal;
     text-align: center;
+    min-height: 100vh;
+    background-image: url("../../Assests/web%201111.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Dim overlay to improve contrast on top of the background image */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
 }
 
 #page {
@@ -33,11 +51,15 @@ h2 {
 .partner-form {
     max-width: 800px;
     margin: 0 auto;
-    background-color: #000;
-    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 1;
 }
 
 .partner-form input,
@@ -46,10 +68,18 @@ h2 {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #fff;
-    background-color: #000;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.35);
     color: aliceblue;
     border-radius: 5px;
+}
+
+.partner-form input:focus,
+.partner-form select:focus,
+.partner-form textarea:focus {
+    outline: none;
+    border-color: #D1B261;
+    box-shadow: 0 0 0 3px rgba(209, 178, 97, 0.25);
 }
 
 .partner-form button {
@@ -67,6 +97,7 @@ h2 {
 
 .partner-form button:hover {
     background-color: #ffbb00;
+    color: #000;
 }
 
 #designation option {
@@ -76,6 +107,8 @@ h2 {
 @media (max-width: 1024px) {
     h1 {
         font-size: 2rem;
+        position: relative;
+        z-index: 1;
     }
 
     h2 {
@@ -99,6 +132,8 @@ h2 {
 @media (max-width: 768px) {
     h1 {
         font-size: 1.8rem;
+        position: relative;
+        z-index: 1;
     }
 
     h2 {
@@ -122,6 +157,8 @@ h2 {
 @media (max-width: 480px) {
     h1 {
         font-size: 1.5rem;
+        position: relative;
+        z-index: 1;
     }
 
     h2 {
@@ -164,4 +201,10 @@ h2 {
 
 #mbcbtn:hover {
     cursor: pointer;
+}
+
+/* Keep other content above the overlay */
+h1 {
+    position: relative;
+    z-index: 1;
 }

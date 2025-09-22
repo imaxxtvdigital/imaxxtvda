@@ -44,9 +44,7 @@ h3 {
 .gallery-section {
     margin-bottom: 60px;
     width: 100vw;
-    position: sticky;
-    top: 0;
-    z-index: 900;
+    position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
