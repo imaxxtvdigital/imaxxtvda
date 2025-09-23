@@ -652,27 +652,28 @@ h2 {
   }
 
   /* Respect poster orientation for better cropping */
-  .card.vertical img {
+  /* Force ALL images to DAIRAA-style poster ratio on mobile */
+  .card img,
+  .card.vertical img,
+  .card.horizontal img {
     aspect-ratio: 2 / 3 !important;
   }
 
-  .card.horizontal img {
-    aspect-ratio: 16 / 9 !important;
-  }
-
   .card h3 {
-    font-size: 1.05rem !important;
+    font-size: 1.2rem !important;
     line-height: 1.25 !important;
-    margin: 6px 0 2px !important;
+    margin: 10px 0 4px !important;
     color: #ffffff !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
     word-wrap: break-word;
     overflow-wrap: anywhere;
   }
 
   .card p {
-    font-size: 0.95rem !important;
-    line-height: 1.35 !important;
-    color: #e2e2e2 !important;
-    margin: 0 0 2px !important;
+    font-size: 1rem !important;
+    line-height: 1.45 !important;
+    color: #d9d9d9 !important;
+    margin: 0 0 6px !important;
   }
 }
