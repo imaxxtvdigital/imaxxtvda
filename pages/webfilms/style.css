@@ -627,3 +627,52 @@ h2 {
     object-fit: contain !important;
   }
 }
+
+/* Stronger mobile overrides to ensure readable text and fluid images */
+@media (max-width: 786px) {
+  .show-cards {
+    padding: 0 10px;
+  }
+
+  .card {
+    width: 100% !important;
+    height: auto !important;
+    padding: 14px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    border-radius: 8px;
+  }
+
+  /* Respect poster orientation for better cropping */
+  .card.vertical img {
+    aspect-ratio: 2 / 3 !important;
+  }
+
+  .card.horizontal img {
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .card h3 {
+    font-size: 1.05rem !important;
+    line-height: 1.25 !important;
+    margin: 6px 0 2px !important;
+    color: #ffffff !important;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .card p {
+    font-size: 0.95rem !important;
+    line-height: 1.35 !important;
+    color: #e2e2e2 !important;
+    margin: 0 0 2px !important;
+  }
+}
