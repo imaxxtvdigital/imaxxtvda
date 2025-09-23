@@ -1108,6 +1108,63 @@ select:focus {
   }
 }
 
+/* Mobile hero/logo fine-tuning without affecting desktop */
+@media (max-width: 768px) {
+  /* Shrink and contain the main nav logo */
+  #imgss img {
+    width: 120px !important;
+    height: auto !important;
+  }
+
+  /* Make hero text block more compact */
+  #page {
+    top: 18%;
+    padding: 0 16px;
+    max-width: 100%;
+  }
+
+  #page h1 {
+    font-size: 42px;
+    line-height: 1.15;
+    letter-spacing: 0.5px;
+  }
+
+  #page h2 {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  #page p {
+    font-size: 16px;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further tighten on small phones */
+  #imgss img {
+    width: 100px !important;
+  }
+
+  #page {
+    top: 20%;
+    padding: 0 14px;
+  }
+
+  #page h1 {
+    font-size: 30px !important;
+    line-height: 1.15 !important;
+  }
+
+  #page h2 {
+    font-size: 18px !important;
+  }
+
+  #page p {
+    font-size: 15px !important;
+  }
+}
+
 /* footrssss */
 /* Footer Container */
 
