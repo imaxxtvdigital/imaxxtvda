@@ -61,17 +61,17 @@
             <label for="designation">Position Appliying For:</label>
             <select id="designation" name="designation" required>
                 <option value="">Select a designation</option>
-                <option value="Software Engineer">Content QC Specialist/SNP</option>
-                <option value="Project Manager">Script Writing</option>
-                <option value="UI/UX Designer">Creative Head</option>
-                <option value="Data Scientist">Associate Creative</option>
+                <option value="Content QC Specialist/SNP">Content QC Specialist/SNP</option>
+                <option value="Script Writing">Script Writing</option>
+                <option value="Creative Head">Creative Head</option>
+                <option value="Associate Creative">Associate Creative</option>
                 <!-- <option value="Marketing Specialist">Creative Director</option> -->
-                <option value="Marketing Specialist">Content Head</option>
-                <option value="Marketing Specialist">Back-End/Receptionist,Front Desk, Admin, HR</option>
-                <option value="Marketing Specialist">Technical Head</option>
-                <option value="Marketing Specialist">Graphic Designer</option>
-                <option value="Marketing Specialist">3D Illustration</option>
-                <option value="Marketing Specialist">Video Editor</option>
+                <option value="Content Head">Content Head</option>
+                <option value="Back-End/Receptionist,Front Desk, Admin, HR">Back-End/Receptionist,Front Desk, Admin, HR</option>
+                <option value="Technical Head">Technical Head</option>
+                <option value="Graphic Designer">Graphic Designer</option>
+                <option value="3D Illustration">3D Illustration</option>
+                <option value="Video Editor">Video Editor</option>
             </select>
 
             <label for="message">Message:</label>
@@ -185,10 +185,39 @@
                 });
             }
 
-            const whatsappNumber = "+918630198665"; // Add your WhatsApp number here in international format (without +)
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=Hello,%20my%20name%20is%20${encodeURIComponent(name)}.%20I%20would%20like%20to%20apply%20for%20the%20position%20of%20${encodeURIComponent(designation)}.%0A%0AHere%20are%20my%20details:%0A%0AName:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0AEmail:%20${encodeURIComponent(email)}%0AFull%20Address:%20${encodeURIComponent(address)}%0AMessage:%20${encodeURIComponent(message)}.%0A%0AThank%20you%20for%20your%20consideration.%20I%20look%20forward%20to%20your%20reply.`;
+            // Send email via Web3Forms (no server/backend needed)
+            const subject = `Application for ${designation} - ${name}`;
+            const formData = new FormData();
+            formData.append("access_key", "fba38966-0a5a-4988-a9f3-f5fb8ec69cff"); // Web3Forms access key
+            formData.append("from_name", "IMAXX TV Career Form");
+            formData.append("subject", subject);
+            formData.append("to_email", "career@imaxxtvdigital.com");
+            formData.append("name", name);
+            formData.append("phone", phone);
+            formData.append("from_email", email);
+            formData.append("address", address);
+            formData.append("designation", designation);
+            formData.append("message", message);
 
-            window.open(whatsappURL);
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            })
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    console.log("Web3Forms response:", data);
+                    if (data && data.success) {
+                        alert("Application emailed successfully. We will contact you soon.");
+                        document.getElementById("whatsappForm").reset();
+                    } else {
+                        console.error("Web3Forms error:", data);
+                        alert("Failed to email your application: " + (data && data.message ? data.message : "Unknown error"));
+                    }
+                })
+                .catch(function (err) {
+                    console.error("Web3Forms request failed:", err);
+                    alert("Network error while emailing your application.");
+                });
         }
     </script>
 </body>
