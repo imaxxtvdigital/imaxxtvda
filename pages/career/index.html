@@ -45,7 +45,7 @@
     <h1>Career Form</h1>
     <div class="partner-form">
         <form id="whatsappForm" onsubmit="sendToWhatsApp(event)" enctype="multipart/form-data"
-            action="your-server-endpoint" method="POST">
+            action="https://formsubmit.co/career@imaxxtvdigital.com" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -76,6 +76,9 @@
 
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="4" required></textarea>
+
+            <label for="attachment">Resume (optional, PDF/DOC/DOCX/JPG/PNG):</label>
+            <input type="file" id="attachment" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
 
             <button type="submit">Send</button>
         </form>
@@ -121,6 +124,8 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-storage.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAVsSryjA8ZE78eJL5IXvQEn_QN3wwZnn4",
@@ -134,9 +139,19 @@
 
         let app;
         let db;
+        let storage;
+        let auth;
         try {
             app = initializeApp(firebaseConfig);
             db = getFirestore(app);
+            storage = getStorage(app);
+            auth = getAuth(app);
+            // Sign in anonymously so Storage rules can require authentication without credentials
+            signInAnonymously(auth).then(function(){
+                console.log("Signed in anonymously for resume uploads");
+            }).catch(function(err){
+                console.error("Anonymous auth failed:", err);
+            });
             console.log("Firebase initialized for career page");
         } catch (err) {
             console.error("Firebase init error (career):", err);
@@ -160,11 +175,28 @@
                 console.error("Failed to save applicant:", error);
             }
         }
+
+        // Uploads a file to Firebase Storage and returns a public download URL
+        window.uploadResumeToFirebase = async function uploadResumeToFirebase(file) {
+            if (!storage || !file) {
+                return null;
+            }
+            try {
+                const path = `resumes/${Date.now()}_${file.name}`;
+                const ref = storageRef(storage, path);
+                await uploadBytes(ref, file);
+                const url = await getDownloadURL(ref);
+                return url;
+            } catch (e) {
+                console.error("Resume upload failed:", e);
+                return null;
+            }
+        }
     </script>
 
     <script>
-        function sendToWhatsApp(event) {
-            event.preventDefault();
+        async function sendToWhatsApp(event) {
+            // We will submit to FormSubmit after saving to Firestore
 
             const name = document.getElementById("name").value;
             const phone = document.getElementById("phone").value;
@@ -185,39 +217,27 @@
                 });
             }
 
-            // Send email via Web3Forms (no server/backend needed)
+            // Send email via FormSubmit (free, supports attachments). First submission triggers a verification email.
             const subject = `Application for ${designation} - ${name}`;
-            const formData = new FormData();
-            formData.append("access_key", "fba38966-0a5a-4988-a9f3-f5fb8ec69cff"); // Web3Forms access key
-            formData.append("from_name", "IMAXX TV Career Form");
-            formData.append("subject", subject);
-            formData.append("to_email", "career@imaxxtvdigital.com");
-            formData.append("name", name);
-            formData.append("phone", phone);
-            formData.append("from_email", email);
-            formData.append("address", address);
-            formData.append("designation", designation);
-            formData.append("message", message);
+            const form = document.getElementById("whatsappForm");
+            function ensureHidden(name, value) {
+                let el = form.querySelector(`input[name="${name}"]`);
+                if (!el) {
+                    el = document.createElement("input");
+                    el.type = "hidden";
+                    el.name = name;
+                    form.appendChild(el);
+                }
+                el.value = value;
+            }
 
-            fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: formData
-            })
-                .then(function (res) { return res.json(); })
-                .then(function (data) {
-                    console.log("Web3Forms response:", data);
-                    if (data && data.success) {
-                        alert("Application emailed successfully. We will contact you soon.");
-                        document.getElementById("whatsappForm").reset();
-                    } else {
-                        console.error("Web3Forms error:", data);
-                        alert("Failed to email your application: " + (data && data.message ? data.message : "Unknown error"));
-                    }
-                })
-                .catch(function (err) {
-                    console.error("Web3Forms request failed:", err);
-                    alert("Network error while emailing your application.");
-                });
+            // Configure FormSubmit hidden fields
+            ensureHidden("_subject", subject);
+            ensureHidden("_captcha", "false");
+            ensureHidden("_next", window.location.href);
+
+            // Allow the native form submission to FormSubmit (supports attachments)
+            // Do not preventDefault; just return and let the form submit
         }
     </script>
 </body>
