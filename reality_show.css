@@ -40,11 +40,12 @@ body {
 
 .card-container {
   display: flex;
-  justify-content: start;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 100vw;
-  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  width: 100%;
+  height: auto;
 }
 
 .event-card {
@@ -52,7 +53,7 @@ body {
   border: 2px solid white;
   border-radius: 12px;
   width: 610px;
-
+  position: relative;
   text-align: center;
   box-shadow: 0 8px 15px #d1b261;
   transition: transform 0.3s ease;
@@ -68,6 +69,34 @@ body {
 
   object-fit: cover;
   border-radius: 12px;
+}
+
+/* Overlay Info button on poster */
+/* Card footer actions */
+.card-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.btn-info {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #d1b261;
+  background-color: transparent;
+  color: #d1b261;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-info:hover {
+  background-color: #d1b261;
+  color: #000;
 }
 
 .card-info {
@@ -143,10 +172,43 @@ body {
   border: 2px solid white;
   padding: 30px;
   border-radius: 12px;
-  max-width: 800px;
-  width: 90%;
-  text-align: center;
+  max-width: 960px;
+  width: 92%;
   color: #fff;
+}
+
+/* Two-column modal layout like team member detail */
+.popup-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.popup-left img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.popup-right {
+  text-align: left;
+}
+
+.popup-right h2 {
+  margin-bottom: 10px;
+}
+
+.popup-desc {
+  max-height: 320px;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .popup-body {
+    grid-template-columns: 1fr;
+  }
 }
 
 .popup-image {
@@ -158,19 +220,16 @@ body {
 
 .close-btn {
   color: #ffffff;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 16px;
   padding: 12px 25px;
   background-color: transparent;
   font-size: 1rem;
   font-weight: 700;
   border-radius: 8px;
   text-decoration: none;
+  border: 1px solid #d1b261;
   transition: background-color 0.3s ease;
-  z-index: 1000;
 }
 
 .close-btn:hover {

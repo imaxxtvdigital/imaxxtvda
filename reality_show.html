@@ -84,27 +84,43 @@
         <div class="content-wrapper">
             <div class="section-title"></div>
             <div class="card-container">
-                <!-- Event/BLOG Card 1 -->
-                <div class="event-card" onclick="openExternalPage()">
-                    <img src="/Assests/images/main lla.jpeg" alt="Event 1" class="event-image">
+                <!-- Card 1: Laughter Akhada -->
+                <div class="event-card">
+                    <img src="/Assests/images/main lla.jpeg" alt="Laughter Akhada" class="event-image">
                     <div class="card-info">
                         <div class="card-title">Stand Up Comedy</div>
-                        <div class="card-summary">LAUGHTER AKHADA : India's First Stand Up Comedian Hunt On Digital
-                            Platform</div>
-                        <button class="btn-watchs" onclick="openExternalPage()">Register Now</button>
+                        <div class="card-summary">LAUGHTER AKHADA : India's First Stand Up Comedian Hunt On Digital Platform</div>
+                        <div class="card-actions">
+                            <button class="btn-info" onclick="openDetail('Laughter Akhada', '•Laughter Akhada is a desi style comedic showdown where aspiring comedians from all over the country enter the Akhada (arena) to battle it out with humour, wit and crowd appeal. •This show is where comedians become warriors, jokes become weapons and laughter becomes the ultimate treasure. •Each episode transforms into a verbal combat one where comedians clash with punchlines, roast each other, challenge themes and aim to win the audience\'s heart and become the Laughter Akhada champion.', '/Assests/images/main lla.jpeg')">Info</button>
+                            <button class="btn-watchs" onclick="openExternalPage()">Register Now</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="content-div">
-                    <h1 class="title">Laughter Akhada</h1>
-                    <p class="description">•Laughter Akhada is a desi style comedic showdown where aspiring comedians
-                        from all over the country enter the Akhada (arena) to battle it out with humour, wit and crowd
-                        appeal.
-                        •This show is where comedians become warriors, jokes become weapons and laughter becomes the
-                        ultimate treasure.
-                        •Each episode transforms into a verbal combat one where comedians clash with punchlines, roast
-                        each other, challenge themes and aim to win the audience's heart and become the Laughter
-                        Akhada champion.</p>
+                <!-- Card 2: Candid Confessions -->
+                <div class="event-card">
+                    <img src="/Assests/series/talkshow.png" alt="Candid Confessions" class="event-image">
+                    <div class="card-info">
+                        <div class="card-title">Candid Confessions</div>
+                        <div class="card-summary">Unfiltered celebrity conversations with twists, reveals and raw truths</div>
+                        <div class="card-actions">
+                            <button class="btn-info" onclick="openDetail('Candid Confessions', '•A free-flowing conversation that feels natural yet unpredictable, packed with playful activities and surprising reveals to keep viewers hooked. •Unlike conventional talk shows that skim the surface, Candid Confessions digs deeper into a celeb\'s personal world—guilty pleasures, never-admitted secrets and defining moments. •Every episode feels fresh, intimate and fun—where laughter, vulnerability and authenticity take center stage.', '/Assests/series/talkshow.png')">Info</button>
+                        <button class="btn-watchs" onclick="openExternalPage()">Register Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Home Chef -->
+                <div class="event-card">
+                    <img src="/Assests/series/home chef.png" alt="Home Chef" class="event-image">
+                    <div class="card-info">
+                        <div class="card-title">Home Chef</div>
+                        <div class="card-summary">Celebrating real kitchens, real stories and unforgettable flavors</div>
+                        <div class="card-actions">
+                            <button class="btn-info" onclick="openDetail('Home Chef', '•Home Chef is an engaging culinary reality program that celebrates the art of cooking at home—where passion, creativity and culture meet. •Aspiring home cooks from diverse backgrounds showcase their signature flavors, personal stories and traditions, turning everyday ingredients into extraordinary dishes. •The show inspires audiences to explore healthy, affordable and creative cooking; promotes culinary diversity across regional, traditional and fusion cuisines; and builds a strong family connection with content that is relatable, wholesome and entertaining.', '/Assests/series/home chef.png')">Info</button>
+                            <button class="btn-watchs" onclick="openExternalPage()">Register Now</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- Event/BLOG Card 1 -->
                 <!-- <div class="event-card"
@@ -136,10 +152,16 @@
     <!-- Popup Modal -->
     <div id="popup-modal" class="popup-modal">
         <div class="popup-content">
-            <span class="close-btn" onclick="closePopup()">BACK</span>
+            <div class="popup-body">
+                <div class="popup-left">
+                    <img id="popup-image" src="" alt="Event Image" class="popup-image" onclick="openExternalPage()">
+                </div>
+                <div class="popup-right">
             <h2 id="popup-title"></h2>
-            <img id="popup-image" src="" alt="Event Image" class="popup-image" onclick="openExternalPage()">
-            <p id="popup-description"></p>
+                    <div id="popup-description" class="popup-desc"></div>
+                    <button class="close-btn" onclick="closePopup()">BACK</button>
+                </div>
+            </div>
         </div>
 
     </div>
