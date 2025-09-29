@@ -533,10 +533,10 @@
 
 <body>
 
-    <img src="/Assests/images/Screenshot la_PhotoGrid.png" alt="Top Image">
+    <img id="register-hero" src="/Assests/images/Screenshot la_PhotoGrid.png" alt="Top Image">
     <form id="registrationForm">
-        <h2>Registration Form</h2>
-        <p>This space is where you can share information on the section, In capital.</p>
+        <h2 id="register-title">Registration Form</h2>
+        <p id="register-blurb">This space is where you can share information on the section, In capital.</p>
 
         <h3>PERSONAL INFORMATION</h3>
         <label for="fullName">Full Name:</label>
@@ -728,6 +728,40 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const analytics = getAnalytics(app);
+        // Resolve selected show from query param
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedShow = (urlParams.get('show') || '').trim();
+
+        // Map show to UI content
+        const showContentMap = {
+            'Laughter Akhada': {
+                title: 'Register for Laughter Akhada',
+                blurb: 'Join India\'s first digital stand-up hunt. Fill the form to register.',
+                hero: '/Assests/images/Screenshot la_PhotoGrid.png'
+            },
+            'Home Chef': {
+                title: 'Register for Home Chef',
+                blurb: 'Share your signature flavors and kitchen story. Fill the form to register.',
+                hero: '/Assests/series/home chef.png'
+            },
+            'Candid Confessions': {
+                title: 'Register for Candid Confessions',
+                blurb: 'Be part of unfiltered conversations with real stories. Fill the form to register.',
+                hero: '/Assests/series/talk_show.png'
+            }
+        };
+
+        // Apply UI updates if show provided
+        if (selectedShow && showContentMap[selectedShow]) {
+            const content = showContentMap[selectedShow];
+            const titleEl = document.getElementById('register-title');
+            const blurbEl = document.getElementById('register-blurb');
+            const heroEl = document.getElementById('register-hero');
+            if (titleEl) titleEl.textContent = content.title;
+            if (blurbEl) blurbEl.textContent = content.blurb;
+            if (heroEl && content.hero) heroEl.src = content.hero;
+        }
+
 
         // Razorpay key
         const razorpayKeyId = "rzp_live_WJiUP1IdD92AnP";
@@ -820,7 +854,8 @@
                     registrationInfo: {
                         paymentStatus: 'pending',
                         registrationDate: serverTimestamp(),
-                        termsAccepted: true
+                        termsAccepted: true,
+                        selectedShow: selectedShow || 'Laughter Akhada'
                     }
                 };
 

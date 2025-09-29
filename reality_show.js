@@ -10,6 +10,11 @@ function openDetail(title, description, image, url) {
         descEl.innerHTML = '<p>' + (description || '') + '</p>';
     }
     document.getElementById('popup-image').src = image;
+    // Ensure clicking the image directs to the correct registration page for this show
+    var imgEl = document.getElementById('popup-image');
+    if (imgEl) {
+        imgEl.onclick = function () { openExternalPage(title); };
+    }
     document.getElementById('popup-modal').style.display = 'flex';
     var backBtn = document.getElementById('mbcbtns');
     if (backBtn) backBtn.style.display = 'none';
@@ -47,8 +52,14 @@ document.addEventListener('keydown', function (e) {
 function openNewPage() {
     window.location.href = '/register.html'; // Replace with the URL you want to open
 }
-function openExternalPage(url) {
-    window.open('/register.html', '_blank'); // Relative path (go up one level)
+function openExternalPage(show) {
+    var map = {
+        'Laughter Akhada': '/register_laughter_akhada.html',
+        'Home Chef': '/register_home_chef.html',
+        'Candid Confessions': '/register_candid_confessions.html'
+    };
+    var href = map[show] || '/register.html';
+    window.open(href, '_blank');
 }
 
 function openNewPage() {
