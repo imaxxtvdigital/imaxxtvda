@@ -40,24 +40,31 @@ body {
 
 .card-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: stretch;
   justify-content: flex-start;
-  gap: 40px;
+  gap: 20px;
   width: 100%;
   height: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 16px;
 }
 
 .event-card {
   background: linear-gradient(135deg, #1d1d1d, #000000);
   border: 2px solid white;
   border-radius: 12px;
-  width: 610px;
+  width: 420px;
+  min-width: 420px;
   position: relative;
   text-align: center;
   box-shadow: 0 8px 15px #d1b261;
   transition: transform 0.3s ease;
   cursor: pointer;
+  scroll-snap-align: start;
 }
 
 .event-card:hover {
@@ -65,8 +72,7 @@ body {
 }
 
 .event-image {
-  width: 600px;
-
+  width: 100%;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -128,20 +134,21 @@ body {
   }
 
   .card-container {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 14px;
+    padding: 8px 10px;
   }
 
   .event-card {
-    width: 100%;
-    max-width: 400px;
-    /* Adjust card width for mobile */
+    width: 75%;
+    min-width: 75%;
+    max-width: 360px;
   }
 
   .event-image {
     width: 100%;
     max-width: 100%;
-    /* Ensure image doesn't overflow */
     object-fit: cover;
   }
 
