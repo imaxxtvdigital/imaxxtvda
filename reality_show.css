@@ -42,7 +42,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   width: 100%;
   height: auto;
@@ -52,7 +52,7 @@ body {
   -webkit-overflow-scrolling: touch;
   padding: 12px 14px;
   margin: 0 auto;
-  scroll-padding: 12px;
+  scroll-padding-left: 14px;
 }
 
 .event-card {
@@ -138,6 +138,7 @@ body {
   .card-container {
     flex-direction: row;
     align-items: stretch;
+    justify-content: flex-start;
     gap: 14px;
     padding: 8px 10px;
   }
@@ -248,7 +249,7 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .card-container {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .event-card {
