@@ -26,9 +26,9 @@ body {
 }
 
 .content-wrapper {
-  /* max-width: 1200px; */
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 16px;
 }
 
 .section-title {
@@ -42,7 +42,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 20px;
   width: 100%;
   height: auto;
@@ -50,15 +50,17 @@ body {
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 12px 16px;
+  padding: 12px 14px;
+  margin: 0 auto;
+  scroll-padding: 12px;
 }
 
 .event-card {
   background: linear-gradient(135deg, #1d1d1d, #000000);
   border: 2px solid white;
   border-radius: 12px;
-  width: 420px;
-  min-width: 420px;
+  width: clamp(260px, 36vw, 380px);
+  min-width: clamp(260px, 36vw, 380px);
   position: relative;
   text-align: center;
   box-shadow: 0 8px 15px #d1b261;
