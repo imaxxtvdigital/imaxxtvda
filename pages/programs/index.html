@@ -161,7 +161,7 @@
                 <div id="partner" class="tab-pane">
                     <div class="partner-form-section">
                         <h2>Become Our Partner</h2>
-                        <form id="partnerForm" class="partner-form">
+                        <form id="partnerForm" class="partner-form" action="https://formsubmit.co/career.imaxxtv@gmail.com" method="POST" onsubmit="preparePartnerEmail(event)">
                             <div class="form-group">
                                 <input type="text" name="company_name" id="company_name" placeholder="Company Name"
                                     required>
@@ -252,6 +252,31 @@
 
             // Add active class to clicked button
             event.target.classList.add('active');
+        }
+    </script>
+
+    <script>
+        // Prepares hidden fields for FormSubmit and triggers Firestore save without blocking native submit
+        function preparePartnerEmail(event) {
+            var form = document.getElementById('partnerForm');
+            function ensureHidden(name, value) {
+                var el = form.querySelector('input[name="' + name + '"]');
+                if (!el) {
+                    el = document.createElement('input');
+                    el.type = 'hidden';
+                    el.name = name;
+                    form.appendChild(el);
+                }
+                el.value = value;
+            }
+            var company = document.getElementById('company_name')?.value || '';
+            ensureHidden('_subject', 'Partner Application - ' + company);
+            ensureHidden('_captcha', 'false');
+            ensureHidden('_next', window.location.href);
+            if (window.savePartnerToFirestore) {
+                try { window.savePartnerToFirestore(); } catch (e) { console.error('Save to Firestore failed (non-blocking):', e); }
+            }
+            // Do NOT prevent default – allow native submission to FormSubmit
         }
     </script>
 
@@ -350,58 +375,22 @@
 
             console.log("Partner form found:", partnerForm);
 
-            // Add direct click handler to submit button as a backup
+            // Native form submission will post to FormSubmit. We only ensure the submit button enables correctly.
             const submitBtn = document.getElementById('submitBtn');
-            if (submitBtn) {
-                console.log("Submit button found");
-                submitBtn.onclick = function (e) {
-                    console.log("Submit button clicked directly");
-                    if (!partnerForm.checkValidity()) {
-                        console.log("Form is invalid");
-                        return;
-                    }
-                    handleFormSubmit(e);
-                };
-            } else {
+            if (!submitBtn) {
                 console.error("Submit button not found");
                 alert("Submit button not found on page");
             }
 
-            // Add submit event listener to the form
-            partnerForm.addEventListener('submit', handleFormSubmit);
-            console.log("Submit event listener added to form");
-
-            // Add event listener to check form validity on input
             partnerForm.addEventListener('input', () => {
-                const submitBtn = document.getElementById('submitBtn');
-                if (submitBtn) {
-                    submitBtn.disabled = !partnerForm.checkValidity();
-                }
+                const btn = document.getElementById('submitBtn');
+                if (btn) { btn.disabled = !partnerForm.checkValidity(); }
             });
         });
 
-        // Handle form submission
-        async function handleFormSubmit(e) {
-            console.log("Form submission handler called");
-            e.preventDefault();
-
-            // Get form element
-            const partnerForm = document.getElementById('partnerForm');
-            if (!partnerForm) {
-                console.error("Partner form not found in submission handler");
-                alert("Partner form not found on page");
-                return;
-            }
-
-            // Disable submit button to prevent multiple submissions
-            const submitBtn = document.getElementById('submitBtn');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Submitting...';
-            }
-
+        // Expose a helper to save the current form data to Firestore without blocking submission
+        window.savePartnerToFirestore = async function savePartnerToFirestore() {
             try {
-                // Get form values
                 const companyName = document.getElementById('company_name')?.value || '';
                 const producerName = document.getElementById('producer_name')?.value || '';
                 const phone = document.getElementById('phone')?.value || '';
@@ -409,8 +398,6 @@
                 const address = document.getElementById('address')?.value || '';
                 const reason = document.getElementById('reason')?.value || '';
                 const previousProjects = document.getElementById('previous_projects')?.value || '';
-
-                console.log("Form data collected:", { companyName, producerName, phone, email });
 
                 const partnerData = {
                     company_name: companyName,
@@ -424,70 +411,20 @@
                     timestamp: serverTimestamp()
                 };
 
-                // Validate form data
+                // Basic validation (non-blocking UI)
                 const validation = validateForm(partnerData);
                 if (!validation.valid) {
-                    console.log("Validation failed:", validation.message);
-                    showStatus(validation.message, false);
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Submit';
-                    }
+                    console.warn('Validation warning (non-blocking):', validation.message);
                     return;
                 }
-
-                console.log("Form data validated successfully");
-
-                // Check if Firebase is initialized
                 if (!db) {
-                    const error = new Error("Firebase is not initialized");
-                    console.error(error);
-                    showStatus("Firebase is not initialized. Please refresh the page and try again.", false);
-                    throw error;
+                    console.warn('Firestore not initialized; skip save');
+                    return;
                 }
-
-                console.log("Attempting to save to Firebase...");
-
-                // Add document to "partners" collection
-                const docRef = await addDoc(collection(db, "partners"), partnerData);
-
-                console.log("Document written with ID:", docRef.id);
-
-                // Show success message
-                showStatus("Thank you! Your application has been submitted successfully.", true);
-
-                // Reset form
-                partnerForm.reset();
+                await addDoc(collection(db, 'partners'), partnerData);
+                console.log('Partner application saved to Firestore');
             } catch (error) {
-                console.error("Error in form submission:", error);
-
-                // Show error message with more details
-                let errorMessage = "Error submitting form. ";
-
-                if (error.code) {
-                    // Firebase specific errors
-                    switch (error.code) {
-                        case 'permission-denied':
-                            errorMessage += "You don't have permission to submit this form.";
-                            break;
-                        case 'unavailable':
-                            errorMessage += "The service is currently unavailable. Please try again later.";
-                            break;
-                        default:
-                            errorMessage += "Please try again later. " + error.message;
-                    }
-                } else {
-                    errorMessage += "Please try again later. " + error.message;
-                }
-
-                showStatus(errorMessage, false);
-                alert("Error: " + errorMessage); // Show alert for visibility
-            } finally {
-                // Re-enable submit button
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Submit';
-                }
+                console.error('Failed to save partner application:', error);
             }
         }
 
