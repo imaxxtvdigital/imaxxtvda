@@ -125,6 +125,30 @@ body {
   text-shadow: 2px 2px 8px #d1b261;
 }
 
+.prize-info {
+  color: #d1b261;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, rgba(209, 178, 97, 0.2), rgba(209, 178, 97, 0.1));
+  border: 2px solid #d1b261;
+  border-radius: 8px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 15px rgba(209, 178, 97, 0.3);
+  animation: prizeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes prizeGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(209, 178, 97, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(209, 178, 97, 0.6);
+  }
+}
+
 /* Responsive styles for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
   .page-title {
@@ -161,6 +185,12 @@ body {
 
   .card-summary {
     font-size: 0.9rem;
+  }
+
+  .prize-info {
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    margin-top: 6px;
   }
 }
 
