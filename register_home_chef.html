@@ -128,7 +128,7 @@
 
         <div class="row">
             <div>
-                <label for="nationalId">National ID No:</label>
+                <label for="nationalId">Adhar card No:</label>
                 <input type="text" id="nationalId" name="nationalId" required>
             </div>
             <div>
@@ -163,11 +163,22 @@
             </div>
         </div>
 
-        <label for="previousShows">Previous Shows:</label>
-        <input type="text" id="previousShows" name="previousShows">
+        <label for="cuisine">Cuisine:</label>
+        <input type="text" id="cuisine" name="cuisine">
 
         <label for="bestGig">Best Cooking Gig:</label>
-        <input type="text" id="bestGig" name="bestGig">
+        <select id="bestGig" name="bestGig">
+            <option value="">Select Best Cooking Gig</option>
+            <option value="Restaurant Chef">Restaurant Chef</option>
+            <option value="Home Chef">Home Chef</option>
+            <option value="Catering">Catering</option>
+            <option value="Food Truck">Food Truck</option>
+            <option value="Private Chef">Private Chef</option>
+            <option value="Cooking Instructor">Cooking Instructor</option>
+            <option value="Food Blogger">Food Blogger</option>
+            <option value="Culinary Competition">Culinary Competition</option>
+            <option value="Other">Other</option>
+        </select>
 
         <label for="cityPerformedIn">City Performed In:</label>
         <input type="text" id="cityPerformedIn" name="cityPerformedIn">
@@ -258,7 +269,7 @@
                         instagram: document.getElementById('instagram').value,
                         facebook: document.getElementById('facebook').value,
                         youtube: document.getElementById('youtube').value,
-                        previousShows: document.getElementById('previousShows').value,
+                        cuisine: document.getElementById('cuisine').value,
                         bestGig: document.getElementById('bestGig').value,
                         cityPerformedIn: document.getElementById('cityPerformedIn').value
                     },
