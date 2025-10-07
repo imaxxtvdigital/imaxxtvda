@@ -10,7 +10,7 @@ document.addEventListener("mousemove", function (dets) {
 gsap.to("#nav", {
   backgroundColor: "#000",
   duration: 0.5,
-  height: "100px",
+  // keep height fixed; do not animate size on scroll
   scrollTrigger: {
     trigger: "#nav",
     scroller: "body",

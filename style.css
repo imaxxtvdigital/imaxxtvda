@@ -82,7 +82,7 @@ select:focus {
 /* Styles for navigation */
 
 #nav {
-  height: 120px;
+  height: 120px; /* fixed height */
   display: flex;
   gap: 5px;
   justify-content: space-around;
@@ -93,7 +93,8 @@ select:focus {
   text-transform: capitalize;
   z-index: 99;
   background-color: black;
-  transition: all 0.3s ease;
+  /* avoid animating height to prevent jiggle */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #menu {
