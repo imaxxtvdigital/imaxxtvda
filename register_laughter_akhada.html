@@ -405,13 +405,12 @@
         const analytics = getAnalytics(app);
 
         const selectedShow = 'Laughter Akhada';
-        const razorpayKeyId = "rzp_live_WJiUP1IdD92AnP";
         const registrationFeeAmount = 25000; // ₹250.00
 
-        function generateOrderId() {
-            return 'order_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        function generateFakePaymentId() { 
+            return 'fake_pay_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15); 
         }
-
+        
         function showError(message, error) {
             console.error(message, error);
             document.getElementById('loadingSpinner').style.display = 'none';
@@ -471,36 +470,21 @@
                 };
 
                 const userDocRef = await addDoc(collection(db, "users"), formData);
-                initiateRazorpayPayment(userDocRef.id, formData.personalInfo);
+                simulateFakePayment(userDocRef.id, formData.personalInfo);
             } catch (error) {
                 showError("Failed to save registration data", error);
             }
         });
 
-        function initiateRazorpayPayment(userId, userData) {
-            try {
-                if (typeof Razorpay === 'undefined') {
-                    throw new Error("Payment system is not available. Please refresh the page or try again later.");
-                }
-                const orderId = generateOrderId();
-                var options = {
-                    key: razorpayKeyId,
-                    amount: registrationFeeAmount,
-                    currency: 'INR',
-                    name: 'IMAXX TV Digital',
-                    description: 'Registration Fee - ' + selectedShow,
-                    prefill: { name: userData.fullName, email: userData.email, contact: userData.phone },
-                    notes: { userId: userId, show: selectedShow },
-                    theme: { color: '#F37254' },
-                    modal: { ondismiss: function () { document.getElementById('loadingSpinner').style.display = 'none'; alert('Payment cancelled. You can try again later.'); } },
-                    handler: function (response) { handlePaymentSuccess(response, userId, userData); }
+        function simulateFakePayment(userId, userData) {
+            // Simulate payment processing delay
+            setTimeout(() => {
+                const fakePaymentId = generateFakePaymentId();
+                const fakeResponse = {
+                    razorpay_payment_id: fakePaymentId
                 };
-                var rzp1 = new Razorpay(options);
-                rzp1.on('payment.failed', function (response) { document.getElementById('loadingSpinner').style.display = 'none'; showError("Payment failed: " + response.error.description); });
-                const razorpayTimeout = setTimeout(() => { document.getElementById('loadingSpinner').style.display = 'none'; showError("Payment system is taking too long to respond. Please try again later."); }, 5000);
-                rzp1.open();
-                setTimeout(() => { clearTimeout(razorpayTimeout); }, 1000);
-            } catch (error) { showError("Failed to initialize payment", error); }
+                handlePaymentSuccess(fakeResponse, userId, userData);
+            }, 2000); // 2 second delay to simulate payment processing
         }
 
         async function handlePaymentSuccess(response, userId, userData) {
@@ -565,7 +549,6 @@ Thank you for your registration!
         }
     </script>
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </body>
